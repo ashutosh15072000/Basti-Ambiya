@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { FlowerDivider, FloralCornerAccents } from './Ornaments';
 import { IslamicPatternOverlay } from './IslamicBackground';
+import { AnimatedSection } from './AnimatedSection';
 import { getAssetPath } from '../utils/assets';
 import { GalleryItem } from '../types';
 
@@ -69,23 +70,26 @@ export const GalleryCarousel: React.FC = () => {
       <IslamicPatternOverlay opacity={0.03} />
       <FloralCornerAccents />
       <div className="relative max-w-6xl mx-auto z-10">
-        <div className="text-center mb-8">
-          <p className="font-cinzel text-xs text-[#1b4332] tracking-widest font-bold uppercase">
-            CHERISHED MOMENTS
-          </p>
-          <FlowerDivider />
-        </div>
+        <AnimatedSection direction="up" durationMs={650}>
+          <div className="text-center mb-8">
+            <p className="font-cinzel text-xs text-[#1b4332] tracking-widest font-bold uppercase">
+              CHERISHED MOMENTS
+            </p>
+            <FlowerDivider />
+          </div>
+        </AnimatedSection>
 
-        <div
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
-          onMouseDown={handleMouseDown}
-          onMouseMove={handleMouseMove}
-          onMouseUp={handleMouseUp}
-          onMouseLeave={handleMouseUp}
-          className="relative w-full max-w-lg mx-auto h-[320px] sm:h-[420px] flex items-center justify-center select-none"
-        >
+        <AnimatedSection direction="zoom" delayMs={150} durationMs={750}>
+          <div
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseUp}
+            className="relative w-full max-w-lg mx-auto h-[320px] sm:h-[420px] flex items-center justify-center select-none"
+          >
           {GALLERY_ITEMS.map((item, idx, arr) => {
             let offset = idx - activeIdx;
             if (offset < -1) offset += arr.length;
@@ -155,6 +159,7 @@ export const GalleryCarousel: React.FC = () => {
             />
           ))}
         </div>
+        </AnimatedSection>
       </div>
     </section>
   );

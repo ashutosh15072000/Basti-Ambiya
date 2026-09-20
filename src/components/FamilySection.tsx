@@ -1,6 +1,7 @@
 import React from 'react';
 import { FlowerDivider, FloralCornerAccents } from './Ornaments';
 import { IslamicPatternOverlay } from './IslamicBackground';
+import { AnimatedSection } from './AnimatedSection';
 
 interface FamilyCardProps {
   title: string;
@@ -43,24 +44,32 @@ export const FamilySection: React.FC = () => {
       <IslamicPatternOverlay opacity={0.04} />
       <FloralCornerAccents />
       <div className="relative max-w-5xl mx-auto text-center z-10">
-        <p className="font-cinzel text-xs text-[#1b4332] tracking-widest font-bold uppercase">
-          HONORING OUR PARENTS &amp; ELDERS
-        </p>
-        <h2 className="font-script text-5xl sm:text-6xl text-rose-deep mt-2">
-          The Families
-        </h2>
-        <FlowerDivider />
+        <AnimatedSection direction="up" durationMs={650}>
+          <p className="font-cinzel text-xs text-[#1b4332] tracking-widest font-bold uppercase">
+            HONORING OUR PARENTS &amp; ELDERS
+          </p>
+          <h2 className="font-script text-5xl sm:text-6xl text-rose-deep mt-2">
+            The Families
+          </h2>
+          <FlowerDivider />
+        </AnimatedSection>
+
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          <FamilyCard
-            title="Bride's Family"
-            subtitle="Requesting your heartfelt prayers and blessings for Ambiya"
-            names={['The Family of Ambiya']}
-          />
-          <FamilyCard
-            title="Groom's Family"
-            subtitle="Requesting your gracious presence and Duas for Basti Ali"
-            names={['The Family of Basti Ali']}
-          />
+          <AnimatedSection direction="right" delayMs={100} durationMs={750}>
+            <FamilyCard
+              title="Bride's Family"
+              subtitle="Requesting your heartfelt prayers and blessings for Ambiya"
+              names={['The Family of Ambiya']}
+            />
+          </AnimatedSection>
+
+          <AnimatedSection direction="left" delayMs={200} durationMs={750}>
+            <FamilyCard
+              title="Groom's Family"
+              subtitle="Requesting your gracious presence and Duas for Basti Ali"
+              names={['The Family of Basti Ali']}
+            />
+          </AnimatedSection>
         </div>
       </div>
     </section>

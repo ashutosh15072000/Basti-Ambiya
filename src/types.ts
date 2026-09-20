@@ -15,6 +15,9 @@ export interface EventDetails {
   bg?: string;
   dark?: boolean;
   directionsUrl: string;
+  caricatureImage?: string;
+  caricatureBadge?: string;
+  fullCardImage?: string;
 }
 
 export interface GalleryItem {

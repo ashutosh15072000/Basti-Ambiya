@@ -257,15 +257,78 @@ export const IslamicHeroArch: React.FC = () => {
 export const IslamicPatternOverlay: React.FC<{
   opacity?: number;
   className?: string;
-}> = ({ opacity = 0.05, className = '' }) => {
+  variant?: 'gold' | 'emerald' | 'subtle';
+}> = ({ opacity = 0.05, className = '', variant = 'gold' }) => {
+  const strokeColor = variant === 'emerald' ? '%231b4332' : variant === 'subtle' ? '%23c89b3c' : '%23aa771c';
+  const fillColor = variant === 'emerald' ? '%232d6a4f' : '%23c89b3c';
+
   return (
     <div
       className={`absolute inset-0 pointer-events-none ${className}`}
       style={{
         opacity,
-        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23aa771c' stroke-width='1'%3E%3Cpath d='M40 0 L50 20 L70 20 L55 35 L60 55 L40 45 L20 55 L25 35 L10 20 L30 20 Z'/%3E%3Ccircle cx='40' cy='40' r='12' stroke-dasharray='2 2'/%3E%3Cpath d='M0 40 L20 40 M60 40 L80 40 M40 0 L40 20 M40 60 L40 80'/%3E%3Cpath d='M0 0 L15 15 M65 65 L80 80 M80 0 L65 15 M15 65 L0 80'/%3E%3Crect x='36' y='36' width='8' height='8' fill='%23c89b3c' fill-opacity='0.4'/%3E%3C/g%3E%3C/svg%3E")`,
+        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='${strokeColor}' stroke-width='1'%3E%3Cpath d='M40 0 L50 20 L70 20 L55 35 L60 55 L40 45 L20 55 L25 35 L10 20 L30 20 Z'/%3E%3Ccircle cx='40' cy='40' r='12' stroke-dasharray='2 2'/%3E%3Cpath d='M0 40 L20 40 M60 40 L80 40 M40 0 L40 20 M40 60 L40 80'/%3E%3Cpath d='M0 0 L15 15 M65 65 L80 80 M80 0 L65 15 M15 65 L0 80'/%3E%3Crect x='36' y='36' width='8' height='8' fill='${fillColor}' fill-opacity='0.35'/%3E%3C/g%3E%3C/svg%3E")`,
         backgroundRepeat: 'repeat',
       }}
     />
+  );
+};
+
+/**
+ * Modern Islamic Theme Background Component used across the site
+ */
+export const ModernMuslimBackground: React.FC<{
+  variant?: 'light' | 'emerald' | 'evening';
+  children?: React.ReactNode;
+  showLanterns?: boolean;
+  className?: string;
+}> = ({ variant = 'light', children, showLanterns = false, className = '' }) => {
+  const bgStyles = {
+    light: 'bg-gradient-to-b from-[#fefcf8] via-[#faf5eb] to-[#f4ebe1]',
+    emerald: 'bg-gradient-to-b from-[#0e271c] via-[#143828] to-[#0a1e15] text-cream',
+    evening: 'bg-gradient-to-b from-[#1b1c2b] via-[#24263e] to-[#12131e] text-cream',
+  }[variant];
+
+  return (
+    <div className={`relative overflow-hidden ${bgStyles} ${className}`}>
+      {/* Repeating Islamic geometric tessellation overlay */}
+      <IslamicPatternOverlay
+        opacity={variant === 'light' ? 0.045 : 0.08}
+        variant={variant === 'light' ? 'gold' : 'subtle'}
+      />
+
+      {/* Decorative Modern Arch Silhouette in backdrop */}
+      <div className="absolute inset-0 pointer-events-none opacity-20 flex justify-center">
+        <svg
+          viewBox="0 0 1000 600"
+          className="w-full h-full object-cover text-gold max-w-5xl"
+          fill="none"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M 100 600 L 100 300 C 100 120 300 20 500 0 C 700 20 900 120 900 300 L 900 600"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeDasharray="6 4"
+          />
+          <circle cx="500" cy="15" r="5" fill="currentColor" />
+          <path d="M 490 30 L 510 30 M 500 20 L 500 40" stroke="currentColor" strokeWidth="1.5" />
+        </svg>
+      </div>
+
+      {/* Optional Hanging Lanterns at top corners */}
+      {showLanterns && (
+        <>
+          <div className="absolute top-0 left-6 sm:left-12 pointer-events-none z-10 hidden sm:block">
+            <IslamicLantern chainLength={65} />
+          </div>
+          <div className="absolute top-0 right-6 sm:right-12 pointer-events-none z-10 hidden sm:block">
+            <IslamicLantern chainLength={65} />
+          </div>
+        </>
+      )}
+
+      {children}
+    </div>
   );
 };

@@ -9,8 +9,10 @@ import { GalleryCarousel } from './components/GalleryCarousel';
 import { RsvpForm } from './components/RsvpForm';
 import { FamilySection } from './components/FamilySection';
 import { Footer } from './components/Footer';
-import { FlowerDivider, FloralCornerAccents, IslamicBismillah } from './components/Ornaments';
+import { FlowerDivider, FloralCornerAccents, IslamicBismillah, BlossomingFlower } from './components/Ornaments';
 import { IslamicHeroArch, IslamicPatternOverlay } from './components/IslamicBackground';
+import { AnimatedSection } from './components/AnimatedSection';
+import { getAssetPath } from './utils/assets';
 import { EventDetails } from './types';
 
 const EVENTS_SCHEDULE: EventDetails[] = [
@@ -29,6 +31,9 @@ const EVENTS_SCHEDULE: EventDetails[] = [
     venue: 'Royal Palm Banquet Gardens',
     dressCode: 'Shades of Marigold & Sunshine Yellow',
     directionsUrl: 'https://maps.google.com',
+    caricatureImage: getAssetPath('assets/caricature_haldi.jpg'),
+    caricatureBadge: 'Haldi Couple Caricature 💛',
+    fullCardImage: getAssetPath('assets/2-DtZeGRTl.jpg'),
   },
   {
     title: 'Mehndi & Sangeet Night',
@@ -45,6 +50,9 @@ const EVENTS_SCHEDULE: EventDetails[] = [
     venue: 'The Grand Crystal Ballroom',
     dressCode: 'Emerald Green & Festive Pastels',
     directionsUrl: 'https://maps.google.com',
+    caricatureImage: getAssetPath('assets/caricature_sangeet.jpg'),
+    caricatureBadge: 'Mehndi Sangeet Caricature 🌿',
+    fullCardImage: getAssetPath('assets/3-CJu4tegY.jpg'),
   },
   {
     title: 'Sacred Nikah Ceremony',
@@ -61,6 +69,9 @@ const EVENTS_SCHEDULE: EventDetails[] = [
     venue: 'The Imperial Mosque & Grand Hall',
     dressCode: 'Royal Traditional / Modest Luxury',
     directionsUrl: 'https://maps.google.com',
+    caricatureImage: getAssetPath('assets/caricature_nikah.jpg'),
+    caricatureBadge: 'Sacred Nikah Couple Caricature 🕊️',
+    fullCardImage: getAssetPath('assets/4-B5oaKVPm.jpg'),
   },
   {
     title: 'Walima Reception',
@@ -77,6 +88,9 @@ const EVENTS_SCHEDULE: EventDetails[] = [
     venue: 'The Crown Pavilion & Ballroom',
     dressCode: 'Formal Evening Elegance',
     directionsUrl: 'https://maps.google.com',
+    caricatureImage: getAssetPath('assets/caricature_walima.jpg'),
+    caricatureBadge: 'Royal Walima Banquet Caricature 👑',
+    fullCardImage: getAssetPath('assets/5-T8V7x-co.jpg'),
   },
 ];
 
@@ -183,13 +197,15 @@ export default function App() {
             <IslamicPatternOverlay opacity={0.03} />
             <FloralCornerAccents />
             <div className="relative max-w-3xl mx-auto text-center z-10">
-              <FlowerDivider />
-              <div className="mb-6">
-                <ScratchCard
-                  revealed={dateRevealed}
-                  onRevealed={() => setDateRevealed(true)}
-                />
-              </div>
+              <AnimatedSection direction="up" durationMs={650}>
+                <FlowerDivider />
+                <div className="mb-6">
+                  <ScratchCard
+                    revealed={dateRevealed}
+                    onRevealed={() => setDateRevealed(true)}
+                  />
+                </div>
+              </AnimatedSection>
               <div
                 className={`transition-all duration-700 ${
                   dateRevealed
@@ -208,18 +224,27 @@ export default function App() {
             <IslamicPatternOverlay opacity={0.05} />
             <FloralCornerAccents />
             <div className="relative max-w-6xl mx-auto z-10">
-              <div className="text-center mb-10">
-                <p className="font-cinzel text-xs text-[#1b4332] tracking-widest font-bold uppercase">
-                  SACRED CELEBRATIONS &amp; CEREMONIES
-                </p>
-                <h2 className="font-script text-5xl sm:text-6xl text-rose-deep mt-2">
-                  Events Schedule
-                </h2>
-                <FlowerDivider />
-              </div>
+              <AnimatedSection direction="up" durationMs={650}>
+                <div className="text-center mb-10">
+                  <p className="font-cinzel text-xs text-[#1b4332] tracking-widest font-bold uppercase">
+                    SACRED CELEBRATIONS &amp; CEREMONIES
+                  </p>
+                  <h2 className="font-script text-5xl sm:text-6xl text-rose-deep mt-2">
+                    Events Schedule
+                  </h2>
+                  <FlowerDivider />
+                </div>
+              </AnimatedSection>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                {EVENTS_SCHEDULE.map((event) => (
-                  <EventCard key={event.title} {...event} />
+                {EVENTS_SCHEDULE.map((event, idx) => (
+                  <AnimatedSection
+                    key={event.title}
+                    direction={idx % 2 === 0 ? 'right' : 'left'}
+                    delayMs={idx * 100}
+                    durationMs={700}
+                  >
+                    <EventCard {...event} />
+                  </AnimatedSection>
                 ))}
               </div>
             </div>
@@ -233,15 +258,17 @@ export default function App() {
             <IslamicPatternOverlay opacity={0.03} />
             <FloralCornerAccents />
             <div className="relative max-w-2xl mx-auto z-10">
-              <h2 className="font-script text-5xl sm:text-6xl text-rose-deep">
-                <span className="font-script-capital-a">A</span>waiting your noble presence &amp; Duas
-              </h2>
-              <FlowerDivider />
-              <p className="font-serif-display italic text-lg sm:text-xl text-foreground/80 leading-relaxed">
-                May Allah (SWT) shower His infinite blessings, love, and peace upon this blessed union.
-                <br />
-                We humbly look forward to sharing this momentous day in your gracious company.
-              </p>
+              <AnimatedSection direction="up" durationMs={700}>
+                <h2 className="font-script text-5xl sm:text-6xl text-rose-deep">
+                  <span className="font-script-capital-a">A</span>waiting your noble presence &amp; Duas
+                </h2>
+                <FlowerDivider />
+                <p className="font-serif-display italic text-lg sm:text-xl text-foreground/80 leading-relaxed">
+                  May Allah (SWT) shower His infinite blessings, love, and peace upon this blessed union.
+                  <br />
+                  We humbly look forward to sharing this momentous day in your gracious company.
+                </p>
+              </AnimatedSection>
             </div>
           </section>
 
@@ -250,19 +277,24 @@ export default function App() {
             <IslamicPatternOverlay opacity={0.04} />
             <FloralCornerAccents />
             <div className="relative max-w-2xl mx-auto z-10">
-              <div className="text-center">
-                <p className="font-cinzel text-xs text-[#1b4332] tracking-widest font-bold uppercase">
-                  KINDLY RESPOND
-                </p>
-                <h2 className="font-script text-5xl sm:text-6xl text-rose-deep mt-2">
-                  RSVP
-                </h2>
-                <FlowerDivider />
-                <p className="font-serif-display italic text-foreground/80 mb-8">
-                  Please let us know by 15th October 2026.
-                </p>
-              </div>
-              <RsvpForm />
+              <AnimatedSection direction="up" durationMs={650}>
+                <div className="text-center">
+                  <p className="font-cinzel text-xs text-[#1b4332] tracking-widest font-bold uppercase">
+                    KINDLY RESPOND
+                  </p>
+                  <h2 className="font-script text-5xl sm:text-6xl text-rose-deep mt-2">
+                    RSVP
+                  </h2>
+                  <FlowerDivider />
+                  <p className="font-serif-display italic text-foreground/80 mb-8">
+                    Please let us know by 15th October 2026.
+                  </p>
+                </div>
+              </AnimatedSection>
+
+              <AnimatedSection direction="zoom" delayMs={150} durationMs={750}>
+                <RsvpForm />
+              </AnimatedSection>
             </div>
           </section>
 
@@ -271,6 +303,14 @@ export default function App() {
 
           {/* Footer Section */}
           <Footer />
+
+          {/* Interactive Floating Blossom Prompt Widget */}
+          <aside aria-label="Floral interaction prompt" className="fixed bottom-6 left-6 z-40 hidden sm:flex items-center gap-2.5 bg-white/90 backdrop-blur-md border border-gold-soft/70 px-4 py-2 rounded-full shadow-lg transition-all duration-300 hover:bg-white select-none">
+            <BlossomingFlower size="sm" colorTheme="rose" title="Click to blossom flower 🌸" />
+            <span className="font-cinzel text-[11px] text-[#1b4332] font-semibold tracking-wide">
+              Tap any floral accent to blossom 🌸
+            </span>
+          </aside>
         </main>
       )}
 

@@ -62,49 +62,66 @@ export const IntroVideo: React.FC<IntroVideoProps> = ({
         preload="auto"
       />
 
-      {/* Islamic Theme Royal Envelope Presentation before click */}
+      {/* Islamic Theme Presentation before click - Royal B & A Letter Monogram */}
       {!hasStarted && (
         <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-20">
           <IslamicPatternOverlay opacity={0.12} />
 
-          {/* Royal Seal Card */}
-          <div className="relative max-w-sm w-full bg-gradient-to-b from-[#143023]/90 to-[#0c1f16]/95 border-2 border-[#e4c88a]/60 rounded-3xl p-8 shadow-2xl backdrop-blur-md flex flex-col items-center space-y-4">
-            {/* Islamic Crescent & Star Crest */}
-            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#d4a555] via-[#fcf6ba] to-[#aa771c] p-0.5 shadow-lg flex items-center justify-center">
-              <div className="w-full h-full rounded-full bg-[#12281d] flex items-center justify-center">
-                <span className="text-2xl text-[#fcf6ba] select-none">🌙</span>
-              </div>
-            </div>
+          {/* Royal B & A Letter Monogram Seal */}
+          <div className="relative flex flex-col items-center justify-center group cursor-pointer">
+            {/* Subtle outer breathing glow aura */}
+            <div className="absolute w-48 h-48 sm:w-56 sm:h-56 rounded-full bg-[#c89b3c]/25 blur-2xl animate-pulse pointer-events-none" />
 
-            {/* Sacred Bismillah */}
-            <p
-              dir="rtl"
-              lang="ar"
-              className="font-arabic text-2xl text-[#fcf6ba] leading-relaxed drop-shadow-sm select-none"
-              style={{ fontFamily: "'Amiri', serif" }}
+            {/* Pulsing ring aura */}
+            <div className="absolute -inset-3 rounded-full border border-[#fcf6ba]/30 animate-ping duration-1000 opacity-30 pointer-events-none" />
+
+            {/* Clickable Gilded B & A Medallion */}
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleClick();
+              }}
+              className="relative w-36 h-36 sm:w-44 sm:h-44 rounded-full p-1 bg-gradient-to-tr from-[#bf953f] via-[#fcf6ba] to-[#aa771c] shadow-[0_0_35px_rgba(200,155,60,0.5)] transition-all duration-500 ease-out hover:scale-108 active:scale-95 cursor-pointer flex items-center justify-center"
+              aria-label="Click B&A letter monogram to start wedding invitation"
             >
-              بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
-            </p>
+              {/* Inner Medallion Background with Islamic dark emerald richness */}
+              <div className="w-full h-full rounded-full bg-gradient-to-b from-[#163828] via-[#0f241a] to-[#07130d] border-2 border-[#e4c88a]/80 flex flex-col items-center justify-center relative overflow-hidden shadow-inner">
+                {/* Subtle Islamic geometric star pattern overlay */}
+                <IslamicPatternOverlay opacity={0.15} />
 
-            <div className="space-y-1">
-              <p className="font-cinzel text-[11px] tracking-[0.3em] text-gold-soft uppercase">
-                WEDDING INVITATION
-              </p>
-              <h2 className="font-script text-4xl sm:text-5xl text-[#fffefc] drop-shadow-md">
-                Ambiya &amp; Basti Ali
-              </h2>
-              <p className="font-serif-display text-xs text-[#e4c88a]/90 italic">
-                Thursday, 29th October 2026
-              </p>
-            </div>
+                {/* Delicate inner circular beaded line */}
+                <div className="absolute inset-2 rounded-full border border-dashed border-[#e4c88a]/40 pointer-events-none" />
 
-            <div className="pt-2 w-full">
-              <div className="w-full py-3 px-6 rounded-full bg-gradient-to-r from-[#bf953f] via-[#fcf6ba] to-[#aa771c] text-[#2b1f1a] font-cinzel text-xs tracking-[0.25em] font-bold uppercase shadow-lg animate-pulse flex items-center justify-center gap-2">
-                <span>✦</span> Open Blessed Invitation <span>✦</span>
+                {/* B & A Monogram Letters */}
+                <div className="relative z-10 flex items-center justify-center">
+                  <span className="font-script text-5xl sm:text-6xl text-[#fcf6ba] drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] tracking-wide select-none group-hover:scale-105 transition-transform duration-300">
+                    B &amp; A
+                  </span>
+                </div>
+
+                {/* Subtle tap label */}
+                <span className="relative z-10 font-cinzel text-[9px] sm:text-[10px] tracking-[0.25em] text-[#e4c88a] uppercase font-semibold mt-0.5 select-none opacity-90 group-hover:opacity-100">
+                  Tap to Open
+                </span>
               </div>
-            </div>
+            </button>
           </div>
         </div>
+      )}
+
+      {/* Skip button while intro video is playing */}
+      {hasStarted && (
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            onOpen();
+          }}
+          className="absolute bottom-6 right-6 z-30 px-4 py-2 rounded-full bg-black/60 hover:bg-black/80 text-white/90 font-cinzel text-xs tracking-wider uppercase backdrop-blur-md border border-white/20 transition-all shadow-lg hover:scale-105 cursor-pointer"
+        >
+          Skip Intro ➔
+        </button>
       )}
     </div>
   );
