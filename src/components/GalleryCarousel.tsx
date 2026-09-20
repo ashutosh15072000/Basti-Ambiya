@@ -1,14 +1,15 @@
 import React, { useState, useRef } from 'react';
 import { FlowerDivider, FloralCornerAccents } from './Ornaments';
 import { IslamicPatternOverlay } from './IslamicBackground';
+import { getAssetPath } from '../utils/assets';
 import { GalleryItem } from '../types';
 
 export const GALLERY_ITEMS: GalleryItem[] = [
-  { image: '/assets/IMG_0034-24WZOV6N.jpeg', caption: 'Sweet smiles & shared dreams' },
-  { image: '/assets/IMG_9318-CfLmeoUo.jpeg', caption: 'Hand in hand, heart to heart' },
-  { image: '/assets/SSG00142-BZRauCC2.jpg', caption: 'Love in every moment' },
-  { image: '/assets/SSG00440-Dz91S7X0.jpg', caption: 'Together, our journey begins' },
-  { image: '/assets/SSG09645-C19LQ60y.jpg', caption: 'Forever and always' },
+  { image: getAssetPath('assets/IMG_0034-24WZOV6N.jpeg'), caption: 'Sweet smiles & shared dreams' },
+  { image: getAssetPath('assets/IMG_9318-CfLmeoUo.jpeg'), caption: 'Hand in hand, heart to heart' },
+  { image: getAssetPath('assets/SSG00142-BZRauCC2.jpg'), caption: 'Love in every moment' },
+  { image: getAssetPath('assets/SSG00440-Dz91S7X0.jpg'), caption: 'Together, our journey begins' },
+  { image: getAssetPath('assets/SSG09645-C19LQ60y.jpg'), caption: 'Forever and always' },
 ];
 
 export const GalleryCarousel: React.FC = () => {

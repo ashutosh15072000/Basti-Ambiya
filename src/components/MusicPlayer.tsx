@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Volume2, VolumeX } from 'lucide-react';
+import { getAssetPath } from '../utils/assets';
 
 interface MusicPlayerProps {
   play: boolean;
@@ -8,8 +9,9 @@ interface MusicPlayerProps {
 
 export const MusicPlayer: React.FC<MusicPlayerProps> = ({
   play,
-  src = '/audio/background.mp3',
+  src,
 }) => {
+  const audioSrc = src || getAssetPath('audio/background.mp3');
   const audioRef = useRef<HTMLAudioElement>(null);
   const [muted, setMuted] = useState(false);
 
@@ -30,7 +32,7 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({
 
   return (
     <>
-      <audio ref={audioRef} src={src} preload="auto" />
+      <audio ref={audioRef} src={audioSrc} preload="auto" />
       {play && (
         <button
           type="button"

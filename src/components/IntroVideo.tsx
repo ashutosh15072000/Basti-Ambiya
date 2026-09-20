@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { IslamicPatternOverlay } from './IslamicBackground';
+import { getAssetPath } from '../utils/assets';
 
 interface IntroVideoProps {
   onOpen: () => void;
@@ -51,7 +52,7 @@ export const IntroVideo: React.FC<IntroVideoProps> = ({
     >
       <video
         ref={videoRef}
-        src="/assets/intro-BHGRpJmm.mp4#t=0.1"
+        src={`${getAssetPath('assets/intro-BHGRpJmm.mp4')}#t=0.1`}
         className={`w-full h-full object-cover transition-opacity duration-500 ${
           hasStarted ? 'opacity-100' : 'opacity-20'
         }`}
