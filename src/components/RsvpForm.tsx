@@ -5,19 +5,19 @@ import { RsvpData } from '../types';
 
 const RSVP_EVENTS = [
   {
-    id: 'Mehndi & Sangeet Night',
-    label: 'Mehndi & Sangeet Night (The Grand Crystal Ballroom)',
-    date: 'Wednesday, 28th October 2026',
-  },
-  {
     id: 'The Sacred Wedding & Nikah',
     label: 'The Sacred Wedding & Nikah (Shimla Resort)',
     date: 'Thursday, 29th October 2026',
   },
   {
-    id: 'Wedding Reception',
+    id: 'Wedding Reception - Hotel Ramada',
     label: 'Wedding Reception (Hotel Ramada)',
     date: 'Friday, 30th October 2026',
+  },
+  {
+    id: 'Wedding Reception - Radiant Resorts',
+    label: 'Wedding Reception (Radiant Resorts Gorakhpur)',
+    date: 'Monday, 2nd November 2026',
   },
 ];
 

@@ -10,10 +10,11 @@ import { GalleryCarousel } from './components/GalleryCarousel';
 import { RsvpForm } from './components/RsvpForm';
 import { FamilySection } from './components/FamilySection';
 import { Footer } from './components/Footer';
-import { FlowerDivider, FloralCornerAccents, IslamicBismillah, BlossomingFlower } from './components/Ornaments';
+import { FlowerDivider, FloralCornerAccents, BlossomingFlower } from './components/Ornaments';
 import { IslamicHeroArch, IslamicPatternOverlay } from './components/IslamicBackground';
 import { AnimatedSection } from './components/AnimatedSection';
 import { FloatingRsvpButton } from './components/FloatingRsvpButton';
+import { HeroInvitationCard } from './components/HeroInvitationCard';
 import { getAssetPath } from './utils/assets';
 import { EventDetails } from './types';
 
@@ -122,60 +123,14 @@ export default function App() {
       {(opening || opened) && (
         <main className="relative animate-fade-in bg-cream">
           {/* Hero Section with Grand Islamic Arch & Gilded Lanterns */}
-          <section className="relative w-full min-h-[95vh] pt-16 sm:pt-24 pb-20 flex flex-col items-center justify-center bg-cream px-6 overflow-hidden text-center select-none border-b border-gold-soft/40 shadow-xs">
+          <section className="relative w-full min-h-[95vh] pt-12 sm:pt-20 pb-16 sm:pb-20 flex flex-col items-center justify-center bg-cream px-3 sm:px-6 overflow-hidden text-center select-none border-b border-gold-soft/40 shadow-xs">
             {/* Islamic Archway, Minarets & Fanous Backdrop */}
             <IslamicHeroArch />
             <IslamicPatternOverlay opacity={0.05} />
 
-            <div className="relative z-10 max-w-2xl mx-auto flex flex-col items-center justify-center space-y-4">
-              {/* Islamic Bismillah & Blessing */}
-              <div className="flex flex-col items-center justify-center bg-white/80 backdrop-blur-md border border-gold-soft/50 rounded-3xl px-6 py-5 shadow-soft max-w-lg mx-auto">
-                <IslamicBismillah />
-                <p className="font-serif-display text-xs sm:text-sm text-foreground/85 italic mt-3 max-w-md leading-relaxed">
-                  "And among His signs is that He created for you mates from among yourselves that you may dwell in tranquility with them, and He has put love and mercy between your hearts."
-                </p>
-                <span className="font-cinzel text-[10px] tracking-widest text-[#a84c32] font-semibold mt-1 uppercase">
-                  Surah Ar-Rum [30:21]
-                </span>
-              </div>
-
-              <p className="font-serif-display text-xs sm:text-sm text-[#2d2d2d] font-semibold tracking-wide max-w-xs sm:max-w-md italic mt-1 drop-shadow-xs bg-white/70 backdrop-blur-md border border-gold-soft/30 rounded-2xl px-6 py-3 shadow-xs">
-                Together with our families, we solicit your gracious presence and prayers on the
-                blessed occasion of the Nikah and wedding celebration of
-              </p>
-
-              {/* Bride Name */}
-              <div className="space-y-0.5">
-                <h1 className="font-script text-6xl sm:text-7xl text-[#93203c] font-semibold tracking-wide drop-shadow-xs">
-                  Ambiya
-                </h1>
-                <p className="font-serif-display text-xs sm:text-sm text-[#2d2d2d] italic font-semibold">
-                  Daughter of The Honorable Family
-                </p>
-              </div>
-
-              <p className="font-script text-3xl sm:text-4xl text-[#800000] font-semibold my-0.5 drop-shadow-xs">
-                with
-              </p>
-
-              {/* Groom Name */}
-              <div className="space-y-0.5">
-                <h1 className="font-script text-6xl sm:text-7xl text-[#93203c] font-semibold tracking-wide drop-shadow-xs">
-                  Basti Ali
-                </h1>
-                <p className="font-serif-display text-xs sm:text-sm text-[#2d2d2d] italic font-semibold">
-                  Son of The Honorable Family
-                </p>
-              </div>
-
-              {/* Auspicious Date Banner */}
-              <div className="mt-4 px-6 py-2.5 rounded-full bg-[#1b4332]/10 border border-[#1b4332]/25 backdrop-blur-xs flex items-center gap-2">
-                <span className="text-xs text-gold">✦</span>
-                <p className="font-cinzel text-xs sm:text-sm tracking-[0.25em] text-[#1b4332] font-bold uppercase">
-                  Thursday, 29th October 2026
-                </p>
-                <span className="text-xs text-gold">✦</span>
-              </div>
+            {/* Main Wedding Invitation Card Presentation (Page 1) - Full Size */}
+            <div className="relative z-10 w-full max-w-3xl sm:max-w-4xl lg:max-w-5xl mx-auto flex flex-col items-center justify-center">
+              <HeroInvitationCard />
             </div>
           </section>
 
@@ -228,7 +183,7 @@ export default function App() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto items-stretch">
                 {EVENTS_SCHEDULE.map((event, idx) => (
                   <AnimatedSection
-                    key={event.title}
+                    key={`${event.title}-${event.date}-${event.venue}`}
                     direction={idx === 1 ? 'up' : idx === 0 ? 'right' : 'left'}
                     delayMs={idx * 150}
                     durationMs={700}
