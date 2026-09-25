@@ -5,8 +5,8 @@ import { RsvpData } from '../types';
 
 const RSVP_EVENTS = [
   {
-    id: 'The Sacred Wedding & Rukhsati',
-    label: 'The Sacred Wedding & Rukhsati (Shimla Resort)',
+    id: 'Rukhsati',
+    label: 'Rukhsati (Shimla Resort)',
     date: 'Thursday, 29th October 2026',
   },
   {
