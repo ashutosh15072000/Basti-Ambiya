@@ -11,10 +11,10 @@ import { RsvpForm } from './components/RsvpForm';
 import { FamilySection } from './components/FamilySection';
 import { Footer } from './components/Footer';
 import { FlowerDivider, FloralCornerAccents, BlossomingFlower } from './components/Ornaments';
-import { IslamicHeroArch, IslamicPatternOverlay } from './components/IslamicBackground';
+import { IslamicPatternOverlay } from './components/IslamicBackground';
 import { AnimatedSection } from './components/AnimatedSection';
 import { FloatingRsvpButton } from './components/FloatingRsvpButton';
-import { HeroInvitationCard } from './components/HeroInvitationCard';
+import { InvitationPageCard } from './components/InvitationPageCard';
 import { getAssetPath } from './utils/assets';
 import { EventDetails } from './types';
 
@@ -122,16 +122,80 @@ export default function App() {
       {/* Main Wedding Invitation Page */}
       {(opening || opened) && (
         <main className="relative animate-fade-in bg-cream">
-          {/* Hero Section with Grand Islamic Arch & Gilded Lanterns */}
-          <section className="relative w-full min-h-[95vh] pt-12 sm:pt-20 pb-16 sm:pb-20 flex flex-col items-center justify-center bg-cream px-3 sm:px-6 overflow-hidden text-center select-none border-b border-gold-soft/40 shadow-xs">
-            {/* Islamic Archway, Minarets & Fanous Backdrop */}
-            <IslamicHeroArch />
-            <IslamicPatternOverlay opacity={0.05} />
+          {/* Invitation Suite Section - Clean presentation without background distractions */}
+          <section className="relative w-full pt-4 sm:pt-10 pb-12 sm:pb-16 flex flex-col items-center justify-center px-1 sm:px-4 md:px-6 select-none border-b border-gold-soft/30">
+            {/* Page 1 (New page 1 before first page) */}
+            <AnimatedSection direction="up" durationMs={700}>
+              <InvitationPageCard
+                pageLabel="Wedding Suite · Page 1"
+                pageTitle="Sacred Prelude & Blessing"
+                defaultFilename="page 0.png"
+                candidateFilenames={[
+                  'page 0.png',
+                  'page0.png',
+                  'page -2.png',
+                  'page-2.png',
+                  'cover.png',
+                  'cover 1.png',
+                  'cover1.png',
+                  'intro 1.png',
+                  'intro1.png',
+                  'page a.png',
+                  'page_a.png',
+                  'page01.png',
+                  'page 01.png',
+                  'page 0.jpg',
+                  'page 0.jpeg',
+                ]}
+                altText="Ambiya & Basit Ali — Wedding Suite Prelude Page 1"
+                storageKey="suite_page_0"
+              />
+            </AnimatedSection>
 
-            {/* Main Wedding Invitation Card Presentation (Page 1) - Full Size */}
-            <div className="relative z-10 w-full max-w-3xl sm:max-w-4xl lg:max-w-5xl mx-auto flex flex-col items-center justify-center">
-              <HeroInvitationCard />
-            </div>
+            {/* Page 2 (New page 2 before first page) */}
+            <AnimatedSection direction="up" durationMs={700} delayMs={150}>
+              <InvitationPageCard
+                pageLabel="Wedding Suite · Page 2"
+                pageTitle="Joyous Union Announcement"
+                defaultFilename="page 00.png"
+                candidateFilenames={[
+                  'page 00.png',
+                  'page00.png',
+                  'page -1.png',
+                  'page-1.png',
+                  'cover 2.png',
+                  'cover2.png',
+                  'intro 2.png',
+                  'intro2.png',
+                  'page b.png',
+                  'page_b.png',
+                  'page02.png',
+                  'page 02.png',
+                  'page 00.jpg',
+                  'page 00.jpeg',
+                ]}
+                altText="Ambiya & Basit Ali — Wedding Suite Prelude Page 2"
+                storageKey="suite_page_00"
+              />
+            </AnimatedSection>
+
+            {/* Page 3 (The main first page - page 1.png) - Full Size & Background Removed */}
+            <AnimatedSection direction="up" durationMs={700} delayMs={300}>
+              <InvitationPageCard
+                pageLabel="Wedding Suite · Page 3 (Main Invitation)"
+                pageTitle="Basit Ali & Ambiya Basher"
+                defaultFilename="page 1.png"
+                candidateFilenames={[
+                  'page 1.png',
+                  'page 1(oct 29).png',
+                  'page1.png',
+                  'page 1.jpg',
+                  'page 1.jpeg',
+                ]}
+                altText="Basit Ali & Ambiya Basher — Sacred Wedding Invitation"
+                storageKey="suite_page_1"
+              />
+            </AnimatedSection>
           </section>
 
           {/* Scratch Card & Countdown Section */}
