@@ -55,19 +55,20 @@ export const FamilySection: React.FC = () => {
         </AnimatedSection>
 
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          <AnimatedSection direction="right" delayMs={100} durationMs={750}>
-            <FamilyCard
-              title="Bride's Family"
-              subtitle="Requesting your heartfelt prayers and blessings for Ambiya Basher"
-              names={['The Family of Ambiya Basher']}
-            />
-          </AnimatedSection>
+          
 
           <AnimatedSection direction="left" delayMs={200} durationMs={750}>
             <FamilyCard
               title="Groom's Family"
               subtitle="Requesting your gracious presence and Duas for Basit Ali"
               names={['The Family of Basit Ali']}
+            />
+          </AnimatedSection>
+          <AnimatedSection direction="right" delayMs={100} durationMs={750}>
+            <FamilyCard
+              title="Bride's Family"
+              subtitle="Requesting your heartfelt prayers and blessings for Ambiya Basher"
+              names={['The Family of Ambiya Basher']}
             />
           </AnimatedSection>
         </div>
