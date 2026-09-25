@@ -5,16 +5,20 @@ import { getAssetPath } from '../utils/assets';
 interface IntroVideoProps {
   onOpen: () => void;
   opening: boolean;
+  opened?: boolean;
   onStartPlay?: () => void;
 }
 
 export const IntroVideo: React.FC<IntroVideoProps> = ({
   onOpen,
   opening,
+  opened,
   onStartPlay,
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [hasStarted, setHasStarted] = useState(false);
+
+  if (opened) return null;
 
   const handleClick = () => {
     if (videoRef.current) {
@@ -46,7 +50,7 @@ export const IntroVideo: React.FC<IntroVideoProps> = ({
   return (
     <div
       onClick={handleClick}
-      className={`fixed inset-0 w-full h-full bg-[#0d1f16] flex items-center justify-center cursor-pointer overflow-hidden z-50 select-none transition-all duration-700 ${
+      className={`fixed inset-0 w-full h-full bg-[#0d1f16] flex items-center justify-center cursor-pointer overflow-hidden z-50 select-none transition-all duration-400 ease-out ${
         opening ? 'scale-95 opacity-0 pointer-events-none' : 'opacity-100'
       }`}
     >
@@ -59,7 +63,7 @@ export const IntroVideo: React.FC<IntroVideoProps> = ({
         playsInline
         muted
         onEnded={handleEnded}
-        preload="auto"
+        preload="metadata"
       />
 
       {/* Islamic Theme Presentation before click - Royal B & A Letter Monogram */}

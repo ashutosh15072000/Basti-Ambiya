@@ -32,7 +32,7 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({
 
   return (
     <>
-      <audio ref={audioRef} src={audioSrc} preload="auto" />
+      <audio ref={audioRef} src={audioSrc} preload="none" />
       {play && (
         <button
           type="button"

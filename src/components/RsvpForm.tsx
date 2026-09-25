@@ -5,8 +5,8 @@ import { RsvpData } from '../types';
 
 const RSVP_EVENTS = [
   {
-    id: 'The Sacred Wedding & Nikah',
-    label: 'The Sacred Wedding & Nikah (Shimla Resort)',
+    id: 'The Sacred Wedding & Rukhsita',
+    label: 'The Sacred Wedding & Rukhsita (Shimla Resort)',
     date: 'Thursday, 29th October 2026',
   },
   {
@@ -70,6 +70,7 @@ export const RsvpForm: React.FC = () => {
       const existing = JSON.parse(localStorage.getItem('wedding_rsvps') || '[]');
       existing.push(payload);
       localStorage.setItem('wedding_rsvps', JSON.stringify(existing));
+      window.dispatchEvent(new CustomEvent('wedding_rsvp_submitted', { detail: payload }));
     } catch {
       // Ignore storage quota error
     }

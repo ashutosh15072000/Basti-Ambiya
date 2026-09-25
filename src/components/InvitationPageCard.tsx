@@ -21,6 +21,7 @@ export const InvitationPageCard: React.FC<InvitationPageCardProps> = ({
 }) => {
   const [candidateIndex, setCandidateIndex] = useState(0);
   const [imageError, setImageError] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [lightboxZoom, setLightboxZoom] = useState(false);
   const [localPreview, setLocalPreview] = useState<string | null>(() => {
@@ -90,14 +91,29 @@ export const InvitationPageCard: React.FC<InvitationPageCardProps> = ({
         {!imageError ? (
           <div
             onClick={() => setIsLightboxOpen(true)}
-            className="relative w-full bg-[#fdfbf7] flex items-center justify-center p-0 cursor-pointer group"
+            className="relative w-full bg-[#fdfbf7] flex items-center justify-center p-0 cursor-pointer group min-h-[300px] sm:min-h-[460px]"
             title="Click to view full screen"
           >
+            {/* Shimmer Placeholder while loading image */}
+            {!imageLoaded && (
+              <div className="absolute inset-0 bg-gradient-to-r from-[#faf6f0] via-[#f4ede0] to-[#faf6f0] animate-pulse flex flex-col items-center justify-center text-center p-6 rounded-2xl sm:rounded-3xl">
+                <div className="w-10 h-10 rounded-full border-2 border-gold-soft border-t-transparent animate-spin mb-2" />
+                <span className="font-cinzel text-[11px] uppercase tracking-widest text-[#a84c32]">
+                  Loading Sacred Invitation...
+                </span>
+              </div>
+            )}
+
             <img
               src={currentSrc}
               alt={altText}
+              loading="eager"
+              decoding="async"
+              onLoad={() => setImageLoaded(true)}
               onError={handleImageError}
-              className="w-full h-auto object-contain rounded-2xl sm:rounded-3xl shadow-xs transition-transform duration-500 group-hover:scale-[1.006]"
+              className={`w-full h-auto object-contain rounded-2xl sm:rounded-3xl shadow-xs transition-opacity duration-300 group-hover:scale-[1.006] ${
+                imageLoaded ? 'opacity-100' : 'opacity-0'
+              }`}
             />
 
             {/* Enlarge Hint Overlay Badge */}

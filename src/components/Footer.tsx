@@ -9,8 +9,8 @@ export const Footer: React.FC = () => {
       <div className="relative z-10 max-w-xl mx-auto">
         <p className="font-cinzel text-xs tracking-[0.4em] text-gold-soft">WITH DUAS &amp; LOVE</p>
         <h3 className="font-script text-5xl sm:text-6xl text-cream mt-3">
-          <span className="font-script-capital-a">A</span>mbiya &amp;{' '}
-          <span className="font-script-capital-a">B</span>asti Ali
+          <span className="font-script-capital-a">B</span>asti Ali &amp;{' '}
+          <span className="font-script-capital-a">A</span>mbiya Basher
         </h3>
 
         <div className="my-5 flex items-center justify-center gap-3">
@@ -28,7 +28,7 @@ export const Footer: React.FC = () => {
 
         <p className="font-serif-display text-lg italic text-gold-soft">Thursday, 29th October 2026</p>
         <p className="mt-3 font-cinzel text-xs tracking-widest text-cream/80 uppercase font-semibold">
-          #AmbiyaWedsBasti
+          #BasitGotAmbitious
         </p>
       </div>
     </footer>

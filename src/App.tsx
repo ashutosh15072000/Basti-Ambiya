@@ -6,7 +6,7 @@ import { ScratchCard } from './components/ScratchCard';
 import { CountdownTimer } from './components/CountdownTimer';
 import { WeddingVideoSection } from './components/WeddingVideoSection';
 import { EventCard } from './components/EventCard';
-import { GalleryCarousel } from './components/GalleryCarousel';
+import { RsvpWishesSection } from './components/RsvpWishesSection';
 import { RsvpForm } from './components/RsvpForm';
 import { FamilySection } from './components/FamilySection';
 import { Footer } from './components/Footer';
@@ -19,11 +19,10 @@ import { getAssetPath } from './utils/assets';
 import { EventDetails } from './types';
 
 const EVENTS_SCHEDULE: EventDetails[] = [
-     
-    {
-    title: 'The Sacred Wedding & Rukhsati',
-    arabicTitle: 'عقد النكاح المبارك',
-    description: 'The sacred Islamic marriage covenant solemnized under the divine grace of Allah (SWT), followed by a celebratory royal dinner banquet.',
+  {
+    title: 'The Sacred Wedding & Rukhsita',
+    arabicTitle: 'رخصة الزفاف المباركة',
+    description: 'The sacred Islamic marriage celebrations solemnized under the divine grace of Allah (SWT), followed by a celebratory royal dinner banquet.',
     day: 'THU',
     date: 'October 29, 2026',
     subtitle: 'Sacred Vows, Eternal Love & Divine Duas',
@@ -31,14 +30,14 @@ const EVENTS_SCHEDULE: EventDetails[] = [
     dayOfMonth: '29',
     monthName: 'October',
     year: '2026',
-    time: 'Rukhsati at 06:30 PM | Royal Banquet at 08:00 PM',
+    time: 'Rukhsita at 06:30 PM | Royal Banquet at 08:00 PM',
     venue: 'Shimla Resort',
     dressCode: 'Royal Traditional / Modest Luxury',
     directionsUrl: 'https://maps.app.goo.gl/oNb7LC2ZuKpFT9b7A?g_st=ac',
-    couplePhoto: getAssetPath('assets/SSG09645-C19LQ60y.jpg'),
-    caricatureImage: getAssetPath('assets/SSG09645-C19LQ60y.jpg'),
-    caricatureBadge: 'Ambiya & Basti Ali · Sacred Rukhsati 🕊️',
-    fullCardImage: getAssetPath('assets/page 2(oct 29).png'),
+    couplePhoto: getAssetPath('assets/SSG09645-C19LQ60y.webp'),
+    caricatureImage: getAssetPath('assets/SSG09645-C19LQ60y.webp'),
+    caricatureBadge: 'Basti Ali and Ambiya Basher · Sacred Rukhsita 🕊️',
+    fullCardImage: getAssetPath('assets/page 2(oct 29).webp'),
   },
   {
     title: 'Wedding Reception',
@@ -55,10 +54,10 @@ const EVENTS_SCHEDULE: EventDetails[] = [
     venue: 'Hotel Ramada',
     dressCode: 'Formal Evening Elegance',
     directionsUrl: 'https://maps.app.goo.gl/VC1HVfJNPzLf7CNy9',
-    couplePhoto: getAssetPath('assets/SSG00440-Dz91S7X0.jpg'),
-    caricatureImage: getAssetPath('assets/SSG00440-Dz91S7X0.jpg'),
-    caricatureBadge: 'Basti Ali & Ambiya · Wedding Reception 👑',
-    fullCardImage: getAssetPath('assets/page3( 30 oct).png'),
+    couplePhoto: getAssetPath('assets/SSG00440-Dz91S7X0.webp'),
+    caricatureImage: getAssetPath('assets/SSG00440-Dz91S7X0.webp'),
+    caricatureBadge: 'Basti Ali and Ambiya Basher · Wedding Reception 👑',
+    fullCardImage: getAssetPath('assets/page3( 30 oct).webp'),
   },
   {
     title: 'Wedding Reception',
@@ -75,10 +74,10 @@ const EVENTS_SCHEDULE: EventDetails[] = [
     venue: 'Radiant Resorts Gorakhpur',
     dressCode: 'Formal Evening Elegance',
     directionsUrl: 'https://maps.app.goo.gl/YeqWGNYWq3HWQegm9',
-    couplePhoto: getAssetPath('assets/SSG00440-Dz91S7X0.jpg'),
-    caricatureImage: getAssetPath('assets/SSG00440-Dz91S7X0.jpg'),
-    caricatureBadge: 'Basti Ali & Ambiya · Wedding Reception 👑',
-    fullCardImage: getAssetPath('assets/page 4 (2 Nov).png'),
+    couplePhoto: getAssetPath('assets/SSG00440-Dz91S7X0.webp'),
+    caricatureImage: getAssetPath('assets/SSG00440-Dz91S7X0.webp'),
+    caricatureBadge: 'Basti Ali and Ambiya Basher · Wedding Reception 👑',
+    fullCardImage: getAssetPath('assets/page 4 (2 Nov).webp'),
   }
 ];
 
@@ -89,7 +88,7 @@ export default function App() {
   const [dateRevealed, setDateRevealed] = useState(false);
 
   useEffect(() => {
-    document.title = 'Basti Ali & Ambiya Basher— Wedding Invitation · October 2026';
+    document.title = 'Basti Ali and Ambiya Basher — Wedding Invitation · October 2026';
     const metaDesc =
       document.querySelector('meta[name="description"]') ||
       (() => {
@@ -100,15 +99,16 @@ export default function App() {
       })();
     metaDesc.setAttribute(
       'content',
-      'Join Ambiya & Basti Ali for their sacred Rukhsati & wedding celebrations on Thursday, 29 October 2026.'
+      'Join Basti Ali and Ambiya Basher for their sacred Rukhsita & wedding celebrations on Thursday, 29 October 2026.'
     );
   }, []);
 
   const handleOpen = () => {
     setOpening(true);
+    setShouldPlayAudio(true);
     setTimeout(() => {
       setOpened(true);
-    }, 1100);
+    }, 320);
   };
 
   return (
@@ -119,55 +119,54 @@ export default function App() {
       {/* Background Audio with toggle control */}
       <MusicPlayer play={shouldPlayAudio || opening || opened} />
 
-      {/* Main Wedding Invitation Page */}
-      {(opening || opened) && (
-        <main className="relative animate-fade-in bg-cream">
-          {/* Invitation Suite Section - Clean presentation without background distractions */}
-          <section className="relative w-full pt-4 sm:pt-10 pb-12 sm:pb-16 flex flex-col items-center justify-center px-1 sm:px-4 md:px-6 select-none border-b border-gold-soft/30">
-            {/* Page 1 (Prelude page before main invitation) */}
-            <AnimatedSection direction="up" durationMs={700}>
-              <InvitationPageCard
-                pageLabel="Wedding Suite · Page 1"
-                pageTitle="Sacred Prelude & Blessing"
-                defaultFilename="page 0.png"
-                candidateFilenames={[
-                  'page 0.png',
-                  'page0.png',
-                  'cover.png',
-                  'cover 1.png',
-                  'cover1.png',
-                  'intro.png',
-                  'intro 1.png',
-                  'page a.png',
-                  'page_a.png',
-                  'page 0.jpg',
-                  'page 0.jpeg',
-                  'cover.jpg',
-                  'Basit&Ambiya11.png'
-                ]}
-                altText="Basit Ali & Ambiya Basher— Wedding Suite Prelude Page"
-                storageKey="suite_page_0"
-              />
-            </AnimatedSection>
+      {/* Main Wedding Invitation Page - pre-mounted for instant zero-latency display */}
+      <main className="relative bg-cream">
+        {/* Invitation Suite Section - Clean presentation without background distractions */}
+        <section className="relative w-full pt-4 sm:pt-10 pb-12 sm:pb-16 flex flex-col items-center justify-center px-1 sm:px-4 md:px-6 select-none border-b border-gold-soft/30">
+          {/* Page 1 (Prelude page before main invitation) */}
+          <AnimatedSection direction="up" durationMs={700}>
+            <InvitationPageCard
+              pageLabel="Wedding Suite · Page 1"
+              pageTitle="Sacred Prelude & Blessing"
+              defaultFilename="page 0.png"
+              candidateFilenames={[
+                'page 0.png',
+                'page0.png',
+                'cover.png',
+                'cover 1.png',
+                'cover1.png',
+                'intro.png',
+                'intro 1.png',
+                'page a.png',
+                'page_a.png',
+                'page 0.jpg',
+                'page 0.jpeg',
+                'cover.jpg',
+              ]}
+              altText="Basti Ali and Ambiya Basher — Wedding Suite Prelude Page"
+              storageKey="suite_page_0"
+            />
+          </AnimatedSection>
 
-            {/* Page 2 (Main Invitation - page 1.png) - Full Size & Background Removed */}
-            <AnimatedSection direction="up" durationMs={700} delayMs={150}>
-              <InvitationPageCard
-                pageLabel="Wedding Suite · Page 2 (Main Invitation)"
-                pageTitle="Basit Ali & Ambiya Basher"
-                defaultFilename="page 1.png"
-                candidateFilenames={[
-                  'page 1.png',
-                  'page 1(oct 29).png',
-                  'page1.png',
-                  'page 1.jpg',
-                  'page 1.jpeg',
-                ]}
-                altText="Basit Ali & Ambiya Basher — Sacred Wedding Invitation"
-                storageKey="suite_page_1"
-              />
-            </AnimatedSection>
-          </section>
+          {/* Page 2 (Main Invitation - page 1.webp / page 1.png) - Fast WebP with fallback */}
+          <AnimatedSection direction="up" durationMs={700} delayMs={150}>
+            <InvitationPageCard
+              pageLabel="Wedding Suite · Page 2 (Main Invitation)"
+              pageTitle="Basti Ali and Ambiya Basher"
+              defaultFilename="page 1.webp"
+              candidateFilenames={[
+                'page 1.webp',
+                'page 1.png',
+                'page 1(oct 29).png',
+                'page1.png',
+                'page 1.jpg',
+                'page 1.jpeg',
+              ]}
+              altText="Basti Ali and Ambiya Basher — Sacred Wedding Invitation"
+              storageKey="suite_page_1"
+            />
+          </AnimatedSection>
+        </section>
 
           {/* Scratch Card & Countdown Section */}
           <section className="relative pt-10 pb-12 px-6 bg-[#faf6f0] border-t border-gold-soft/30 overflow-hidden">
@@ -231,8 +230,8 @@ export default function App() {
             </div>
           </section>
 
-          {/* Gallery Carousel Section */}
-          <GalleryCarousel />
+          {/* Guest Book & RSVP Wishes Section (Replaces Cherished Moments photo frames) */}
+          <RsvpWishesSection />
 
           {/* Awaiting your noble presence Section */}
           <section className="relative py-24 px-6 bg-cream text-center overflow-hidden">
@@ -296,18 +295,18 @@ export default function App() {
           {/* Floating RSVP Action Button at Bottom Right */}
           <FloatingRsvpButton targetId="rsvp" />
         </main>
-      )}
 
       {/* Envelope / Video Intro Overlay */}
       {!opened && (
         <div
-          className={`fixed inset-0 z-50 transition-opacity duration-1000 ${
+          className={`fixed inset-0 z-50 transition-opacity duration-400 ease-out ${
             opening ? 'opacity-0 pointer-events-none' : 'opacity-100'
           }`}
         >
           <IntroVideo
             onOpen={handleOpen}
             opening={opening}
+            opened={opened}
             onStartPlay={() => setShouldPlayAudio(true)}
           />
         </div>

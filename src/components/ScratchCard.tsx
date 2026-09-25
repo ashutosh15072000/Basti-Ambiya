@@ -153,7 +153,7 @@ export const ScratchCard: React.FC<ScratchCardProps> = ({
           29th October 2026
         </p>
         <p className="font-serif-display italic text-xs text-foreground/75 mt-0.5">
-          Nikah Mubarak · Thursday
+          Rukhsita Mubarak · Thursday
         </p>
       </div>
       {!revealed && (

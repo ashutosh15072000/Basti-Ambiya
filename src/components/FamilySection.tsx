@@ -58,8 +58,8 @@ export const FamilySection: React.FC = () => {
           <AnimatedSection direction="right" delayMs={100} durationMs={750}>
             <FamilyCard
               title="Bride's Family"
-              subtitle="Requesting your heartfelt prayers and blessings for Ambiya"
-              names={['The Family of Ambiya']}
+              subtitle="Requesting your heartfelt prayers and blessings for Ambiya Basher"
+              names={['The Family of Ambiya Basher']}
             />
           </AnimatedSection>
 
