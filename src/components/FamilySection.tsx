@@ -60,7 +60,7 @@ export const FamilySection: React.FC = () => {
           <AnimatedSection direction="left" delayMs={200} durationMs={750}>
             <FamilyCard
               title="Groom's Family"
-              subtitle="Requesting your gracious presence and Duas for Basit Ali"
+              subtitle="Requesting your gracious presence and Duas for         Basit Ali"
               names={['The Family of Basit Ali']}
             />
           </AnimatedSection>
