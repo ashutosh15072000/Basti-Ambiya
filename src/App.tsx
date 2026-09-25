@@ -33,7 +33,7 @@ const EVENTS_SCHEDULE: EventDetails[] = [
     directionsUrl: 'https://maps.google.com',
     caricatureImage: getAssetPath('assets/caricature_haldi.jpg'),
     caricatureBadge: 'Haldi Couple Caricature 💛',
-    fullCardImage: getAssetPath('assets/2-DtZeGRTl.jpg'),
+    fullCardImage: getAssetPath('assets/page 2(oct 29).png'),
   },
   {
     title: 'Mehndi & Sangeet Night',
