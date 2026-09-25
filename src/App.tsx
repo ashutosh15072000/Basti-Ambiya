@@ -4,6 +4,7 @@ import { MusicPlayer } from './components/MusicPlayer';
 import { IntroVideo } from './components/IntroVideo';
 import { ScratchCard } from './components/ScratchCard';
 import { CountdownTimer } from './components/CountdownTimer';
+import { WeddingVideoSection } from './components/WeddingVideoSection';
 import { EventCard } from './components/EventCard';
 import { GalleryCarousel } from './components/GalleryCarousel';
 import { RsvpForm } from './components/RsvpForm';
@@ -12,33 +13,15 @@ import { Footer } from './components/Footer';
 import { FlowerDivider, FloralCornerAccents, IslamicBismillah, BlossomingFlower } from './components/Ornaments';
 import { IslamicHeroArch, IslamicPatternOverlay } from './components/IslamicBackground';
 import { AnimatedSection } from './components/AnimatedSection';
+import { FloatingRsvpButton } from './components/FloatingRsvpButton';
 import { getAssetPath } from './utils/assets';
 import { EventDetails } from './types';
 
 const EVENTS_SCHEDULE: EventDetails[] = [
   {
-    title: 'Haldi & Manjha Ceremony',
-    arabicTitle: 'مَنْجَه وَحَلْدِي',
-    description: 'A cheerful morning of fragrant turmeric, traditional geet, laughter, and family blessings.',
-    day: 'TUE',
-    date: 'October 27, 2026',
-    subtitle: 'Fragrant Turmeric, Music & Sunshine',
-    dayOfWeek: 'Tuesday',
-    dayOfMonth: '27',
-    monthName: 'October',
-    year: '2026',
-    time: '11:00 AM Onwards',
-    venue: 'Royal Palm Banquet Gardens',
-    dressCode: 'Shades of Marigold & Sunshine Yellow',
-    directionsUrl: 'https://maps.google.com',
-    caricatureImage: getAssetPath('assets/caricature_haldi.jpg'),
-    caricatureBadge: 'Haldi Couple Caricature 💛',
-    fullCardImage: getAssetPath('assets/page 2(oct 29).png'),
-  },
-  {
     title: 'Mehndi & Sangeet Night',
     arabicTitle: 'ليلة الحناء والبهجة',
-    description: 'An enchanting evening of intricate henna patterns, festive melodies, and celebratory dance.',
+    description: 'An enchanting evening of intricate henna patterns, celebratory melodies, twirls, and festive dancing.',
     day: 'WED',
     date: 'October 28, 2026',
     subtitle: 'Intricate Henna, Twirls & Lights',
@@ -49,15 +32,16 @@ const EVENTS_SCHEDULE: EventDetails[] = [
     time: '06:30 PM Onwards',
     venue: 'The Grand Crystal Ballroom',
     dressCode: 'Emerald Green & Festive Pastels',
-    directionsUrl: 'https://maps.google.com',
-    caricatureImage: getAssetPath('assets/caricature_sangeet.jpg'),
-    caricatureBadge: 'Mehndi Sangeet Caricature 🌿',
+    directionsUrl: 'https://maps.google.com/?q=Grand+Crystal+Ballroom',
+    couplePhoto: getAssetPath('assets/IMG_9318-CfLmeoUo.jpeg'),
+    caricatureImage: getAssetPath('assets/IMG_9318-CfLmeoUo.jpeg'),
+    caricatureBadge: 'Ambiya & Basti Ali · Mehndi Twirls 🌿',
     fullCardImage: getAssetPath('assets/3-CJu4tegY.jpg'),
   },
   {
-    title: 'Sacred Nikah Ceremony',
+    title: 'The Sacred Wedding & Nikah',
     arabicTitle: 'عقد النكاح المبارك',
-    description: 'The sacred Islamic marriage covenant solemnized under the grace of Allah (SWT), followed by a celebratory royal dinner.',
+    description: 'The sacred Islamic marriage covenant solemnized under the divine grace of Allah (SWT), followed by a celebratory royal dinner banquet.',
     day: 'THU',
     date: 'October 29, 2026',
     subtitle: 'Sacred Vows, Eternal Love & Divine Duas',
@@ -66,17 +50,18 @@ const EVENTS_SCHEDULE: EventDetails[] = [
     monthName: 'October',
     year: '2026',
     time: 'Nikah at 06:30 PM | Royal Banquet at 08:00 PM',
-    venue: 'The Imperial Mosque & Grand Hall',
+    venue: 'Shimla Resort',
     dressCode: 'Royal Traditional / Modest Luxury',
-    directionsUrl: 'https://maps.google.com',
-    caricatureImage: getAssetPath('assets/caricature_nikah.jpg'),
-    caricatureBadge: 'Sacred Nikah Couple Caricature 🕊️',
+    directionsUrl: 'https://maps.google.com/?q=Shimla+Resort',
+    couplePhoto: getAssetPath('assets/SSG09645-C19LQ60y.jpg'),
+    caricatureImage: getAssetPath('assets/SSG09645-C19LQ60y.jpg'),
+    caricatureBadge: 'Ambiya & Basti Ali · Sacred Nikah 🕊️',
     fullCardImage: getAssetPath('assets/4-B5oaKVPm.jpg'),
   },
   {
-    title: 'Walima Reception',
+    title: 'Wedding Reception',
     arabicTitle: 'وليمة العرس المباركة',
-    description: 'The Sunnah feast honoring family and friends to celebrate the joyous new journey of the newlyweds.',
+    description: 'The joyous feast and grand evening banquet honoring family and dear friends to celebrate the newlyweds.',
     day: 'FRI',
     date: 'October 30, 2026',
     subtitle: 'A Blessed Feast & Grand Celebration',
@@ -85,11 +70,12 @@ const EVENTS_SCHEDULE: EventDetails[] = [
     monthName: 'October',
     year: '2026',
     time: '07:30 PM Onwards',
-    venue: 'The Crown Pavilion & Ballroom',
+    venue: 'Hotel Ramada',
     dressCode: 'Formal Evening Elegance',
-    directionsUrl: 'https://maps.google.com',
-    caricatureImage: getAssetPath('assets/caricature_walima.jpg'),
-    caricatureBadge: 'Royal Walima Banquet Caricature 👑',
+    directionsUrl: 'https://maps.google.com/?q=Hotel+Ramada',
+    couplePhoto: getAssetPath('assets/SSG00440-Dz91S7X0.jpg'),
+    caricatureImage: getAssetPath('assets/SSG00440-Dz91S7X0.jpg'),
+    caricatureBadge: 'Ambiya & Basti Ali · Wedding Reception 👑',
     fullCardImage: getAssetPath('assets/5-T8V7x-co.jpg'),
   },
 ];
@@ -219,11 +205,14 @@ export default function App() {
             </div>
           </section>
 
+          {/* Wedding Invitation Film Section (Before Event Schedule) */}
+          <WeddingVideoSection />
+
           {/* Events Schedule Section */}
           <section className="relative pt-12 pb-16 px-6 bg-gradient-to-b from-[#1b4332]/5 via-[#faf6f0] to-[#1b4332]/5 border-y border-gold-soft/40 overflow-hidden">
             <IslamicPatternOverlay opacity={0.05} />
             <FloralCornerAccents />
-            <div className="relative max-w-6xl mx-auto z-10">
+            <div className="relative max-w-7xl mx-auto z-10">
               <AnimatedSection direction="up" durationMs={650}>
                 <div className="text-center mb-10">
                   <p className="font-cinzel text-xs text-[#1b4332] tracking-widest font-bold uppercase">
@@ -235,13 +224,14 @@ export default function App() {
                   <FlowerDivider />
                 </div>
               </AnimatedSection>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto items-stretch">
                 {EVENTS_SCHEDULE.map((event, idx) => (
                   <AnimatedSection
                     key={event.title}
-                    direction={idx % 2 === 0 ? 'right' : 'left'}
-                    delayMs={idx * 100}
+                    direction={idx === 1 ? 'up' : idx === 0 ? 'right' : 'left'}
+                    delayMs={idx * 150}
                     durationMs={700}
+                    className="w-full flex"
                   >
                     <EventCard {...event} />
                   </AnimatedSection>
@@ -311,6 +301,9 @@ export default function App() {
               Tap any floral accent to blossom 🌸
             </span>
           </aside>
+
+          {/* Floating RSVP Action Button at Bottom Right */}
+          <FloatingRsvpButton targetId="rsvp" />
         </main>
       )}
 

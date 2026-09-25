@@ -38,7 +38,7 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({
           type="button"
           aria-label={muted ? 'Unmute background music' : 'Mute background music'}
           onClick={() => setMuted((m) => !m)}
-          className="fixed bottom-5 right-5 z-50 h-11 w-11 rounded-full bg-[#2b1f1a]/80 text-[#faf6f0] backdrop-blur shadow-elegant flex items-center justify-center hover:scale-105 transition cursor-pointer"
+          className="fixed bottom-[70px] right-5 sm:bottom-[78px] sm:right-6 z-40 h-11 w-11 rounded-full bg-[#2b1f1a]/85 text-[#faf6f0] border border-gold-soft/40 backdrop-blur shadow-elegant flex items-center justify-center hover:scale-105 active:scale-95 transition cursor-pointer"
         >
           {muted ? <VolumeX className="h-5 w-5" /> : <Volume2 className="h-5 w-5" />}
         </button>

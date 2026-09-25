@@ -5,23 +5,18 @@ import { RsvpData } from '../types';
 
 const RSVP_EVENTS = [
   {
-    id: 'Haldi & Manjha Celebration',
-    label: 'Haldi & Manjha Celebration',
-    date: 'Tuesday, 27th October 2026',
-  },
-  {
-    id: 'Mehndi Celebration',
-    label: 'Mehndi & Sangeet Night',
+    id: 'Mehndi & Sangeet Night',
+    label: 'Mehndi & Sangeet Night (The Grand Crystal Ballroom)',
     date: 'Wednesday, 28th October 2026',
   },
   {
-    id: 'Nikah Ceremony',
-    label: 'Nikah Ceremony (The Wedding)',
+    id: 'The Sacred Wedding & Nikah',
+    label: 'The Sacred Wedding & Nikah (Shimla Resort)',
     date: 'Thursday, 29th October 2026',
   },
   {
-    id: 'Walima Reception',
-    label: 'Walima Reception (Grand Banquet)',
+    id: 'Wedding Reception',
+    label: 'Wedding Reception (Hotel Ramada)',
     date: 'Friday, 30th October 2026',
   },
 ];

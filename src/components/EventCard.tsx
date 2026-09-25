@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
-import { Navigation, Clock, MapPin, Sparkles, Calendar, Maximize2, X } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Navigation, Clock, MapPin, Sparkles, Calendar, Maximize2, X, ZoomIn, ZoomOut } from 'lucide-react';
 import { IslamicPatternOverlay } from './IslamicBackground';
-import { BlossomingFlower } from './Ornaments';
 import { EventDetails } from '../types';
 
 export const EventCard: React.FC<EventDetails> = ({
@@ -17,108 +16,106 @@ export const EventCard: React.FC<EventDetails> = ({
   dressCode,
   directionsUrl,
   description,
-  caricatureImage,
   caricatureBadge,
   fullCardImage,
 }) => {
-  const [showFullCaricature, setShowFullCaricature] = useState(false);
-  const [selectedViewImage, setSelectedViewImage] = useState<string | null>(null);
-  const [viewMode, setViewMode] = useState<'invitation' | 'caricature'>('invitation');
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [lightboxZoom, setLightboxZoom] = useState(false);
 
-  // Primary image to display: default to the full invitation image
-  const primaryInvitationImage = fullCardImage || caricatureImage;
-  const activeDisplayImage = viewMode === 'invitation' ? primaryInvitationImage : (caricatureImage || primaryInvitationImage);
+  // Close lightbox on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsLightboxOpen(false);
+        setLightboxZoom(false);
+      }
+    };
+    if (isLightboxOpen) {
+      window.addEventListener('keydown', handleKeyDown);
+    }
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isLightboxOpen]);
+
+  // Event card image is exclusively the official ceremony invitation card page
+  const displayImage = fullCardImage;
 
   // Event color scheme accents
   const isHaldi = title.toLowerCase().includes('haldi');
-  const isMehndi = title.toLowerCase().includes('mehndi');
-  const isNikah = title.toLowerCase().includes('nikah');
+  const isMehndi = title.toLowerCase().includes('mehndi') || title.toLowerCase().includes('sangeet');
+  const isNikah = title.toLowerCase().includes('nikah') || title.toLowerCase().includes('wedding');
+  const isReception = title.toLowerCase().includes('reception');
 
   const themeAccent = isHaldi
-    ? { border: 'border-amber-400/60', badge: 'bg-amber-100/95 text-amber-900 border-amber-300', floral: 'gold' as const, glow: 'from-amber-500/10 via-amber-200/5 to-transparent' }
+    ? {
+        border: 'border-amber-400/60',
+        badge: 'bg-amber-100/95 text-amber-950 border-amber-300',
+        glow: 'from-amber-500/10 via-amber-200/5 to-transparent',
+      }
     : isMehndi
-    ? { border: 'border-emerald-500/60', badge: 'bg-emerald-100/95 text-emerald-950 border-emerald-300', floral: 'emerald' as const, glow: 'from-emerald-600/10 via-emerald-200/5 to-transparent' }
+    ? {
+        border: 'border-emerald-500/60',
+        badge: 'bg-emerald-100/95 text-emerald-950 border-emerald-300',
+        glow: 'from-emerald-600/10 via-emerald-200/5 to-transparent',
+      }
     : isNikah
-    ? { border: 'border-[#93203c]/60', badge: 'bg-rose-100/95 text-[#93203c] border-rose-300', floral: 'rose' as const, glow: 'from-rose-600/10 via-rose-200/5 to-transparent' }
-    : { border: 'border-gold-soft/60', badge: 'bg-amber-50 text-amber-950 border-amber-300', floral: 'gold' as const, glow: 'from-amber-600/10 via-amber-200/5 to-transparent' };
+    ? {
+        border: 'border-[#93203c]/60',
+        badge: 'bg-rose-100/95 text-[#93203c] border-rose-300',
+        glow: 'from-rose-600/10 via-rose-200/5 to-transparent',
+      }
+    : isReception
+    ? {
+        border: 'border-[#1b4332]/60',
+        badge: 'bg-[#1b4332]/10 text-[#1b4332] border-[#1b4332]/30',
+        glow: 'from-[#1b4332]/15 via-gold-soft/10 to-transparent',
+      }
+    : {
+        border: 'border-gold-soft/60',
+        badge: 'bg-amber-50 text-amber-950 border-amber-300',
+        glow: 'from-amber-600/10 via-amber-200/5 to-transparent',
+      };
 
-  const handleOpenPreview = (imgUrl?: string) => {
-    setSelectedViewImage(imgUrl || activeDisplayImage || null);
-    setShowFullCaricature(true);
-  };
+  const badgeText = caricatureBadge?.replace(/^Ambiya & Basti Ali ·\s*/, '') || title;
 
   return (
     <>
       <article className={`relative rounded-3xl overflow-hidden shadow-elegant border-2 ${themeAccent.border} bg-gradient-to-b from-[#fffefc] to-[#faf5ed] transition-all duration-300 hover:shadow-2xl hover:scale-[1.01] w-full flex flex-col max-w-lg mx-auto`}>
         <IslamicPatternOverlay opacity={0.03} />
 
-        {/* Top Section: Full Invitation Card Image Showing Completely */}
-        {activeDisplayImage && (
-          <div className="relative w-full overflow-hidden bg-gradient-to-b from-[#fffbf4] via-[#f7f0e3] to-cream/70 border-b border-gold-soft/40 p-3 sm:p-4">
-            {/* Islamic Arch Framed Container for Full Invitation Card */}
-            <div className="relative mx-auto rounded-2xl overflow-hidden border-2 border-gold-soft shadow-md bg-white/95 group">
-              {/* Subtle Arch Peak Glow */}
+        {/* Visual Header: Official Ceremony Card Page - 100% Fully Visible */}
+        {displayImage && (
+          <div className="relative w-full overflow-hidden bg-gradient-to-b from-[#fffbf4] via-[#f7f0e3] to-cream/70 border-b border-gold-soft/40 p-4 sm:p-5">
+            {/* Header Badge */}
+            <div className="flex flex-col items-center gap-2 mb-3.5">
+              <span className={`inline-flex items-center gap-1.5 px-4 py-1 rounded-full text-xs font-cinzel font-bold tracking-wider uppercase border shadow-sm backdrop-blur-md ${themeAccent.badge}`}>
+                <Sparkles className="w-3 h-3 text-gold shrink-0" />
+                {badgeText}
+              </span>
+            </div>
+
+            {/* Framed Image Container - Engineered for 100% Full Visibility (Zero Cropping) */}
+            <div className="relative mx-auto rounded-2xl overflow-hidden border-2 border-gold-soft/70 shadow-md bg-white group max-w-[420px]">
+              {/* Subtle Ambient Glow */}
               <div className={`absolute inset-0 bg-gradient-to-b ${themeAccent.glow} pointer-events-none z-10`} />
 
-              {/* Event Badge */}
-              <div className="absolute top-3 left-3 z-20">
-                <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-cinzel font-bold tracking-wider uppercase border shadow-sm backdrop-blur-md ${themeAccent.badge}`}>
-                  <Sparkles className="w-3 h-3 text-gold shrink-0" />
-                  {viewMode === 'invitation' ? 'Full Invitation Card' : (caricatureBadge || 'Couple Caricature')}
-                </span>
-              </div>
-
-              {/* View Switcher: Toggle between Full Card and Caricature */}
-              {fullCardImage && caricatureImage && (
-                <div className="absolute top-3 right-3 z-30 flex items-center bg-black/60 backdrop-blur-md rounded-full p-0.5 border border-white/20 shadow-md">
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setViewMode('invitation');
-                    }}
-                    className={`px-2.5 py-1 text-[10px] sm:text-xs rounded-full font-cinzel font-bold tracking-wider transition-all uppercase cursor-pointer ${
-                      viewMode === 'invitation'
-                        ? 'bg-[#a84c32] text-white shadow-xs'
-                        : 'text-white/80 hover:text-white'
-                    }`}
-                  >
-                    Full Card
-                  </button>
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setViewMode('caricature');
-                    }}
-                    className={`px-2.5 py-1 text-[10px] sm:text-xs rounded-full font-cinzel font-bold tracking-wider transition-all uppercase cursor-pointer ${
-                      viewMode === 'caricature'
-                        ? 'bg-[#a84c32] text-white shadow-xs'
-                        : 'text-white/80 hover:text-white'
-                    }`}
-                  >
-                    Caricature
-                  </button>
-                </div>
-              )}
-
-              {/* Full Invitation Card Image - Shown in Full with zero cropping */}
-              <div 
-                className="relative w-full cursor-pointer overflow-hidden flex items-center justify-center bg-[#faf7f0] p-2 sm:p-3"
-                onClick={() => handleOpenPreview(activeDisplayImage)}
+              {/* Card Page Display: w-full and object-contain ensures the entire ceremony card page is fully visible */}
+              <div
+                onClick={() => setIsLightboxOpen(true)}
+                className="relative w-full bg-[#fbf9f5] flex items-center justify-center p-1 sm:p-2 cursor-pointer transition-transform duration-300 group-hover:bg-[#f6f0e6]"
+                title="Click to view full screen"
               >
                 <img
-                  src={activeDisplayImage}
-                  alt={`${title} invitation card`}
+                  src={displayImage}
+                  alt={`${title} - Official Ceremony Invitation`}
                   loading="lazy"
-                  className="w-full h-auto max-h-[580px] sm:max-h-[640px] object-contain rounded-xl shadow-xs transition-transform duration-500 ease-out group-hover:scale-[1.015]"
+                  className="w-full h-auto max-h-[540px] object-contain rounded-xl shadow-xs transition-transform duration-500 group-hover:scale-[1.01]"
                 />
 
-                {/* Bottom Bar: Click to expand full card */}
-                <div className="absolute bottom-3 right-3 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/95 hover:bg-white text-foreground/85 shadow-md backdrop-blur-xs transition-transform duration-200 group-hover:scale-105 border border-gold-soft/50">
-                  <Maximize2 className="w-3.5 h-3.5 text-[#a84c32]" />
-                  <span className="font-cinzel text-[10px] font-bold tracking-wider text-[#a84c32] uppercase">
-                    Tap to Enlarge
+                {/* Enlarge Hint Overlay */}
+                <div className="absolute bottom-3 right-3 z-20 opacity-90 group-hover:opacity-100 transition-opacity">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-cinzel font-semibold bg-black/60 text-white backdrop-blur-md shadow-md border border-white/20 hover:bg-black/80 transition-all">
+                    <Maximize2 className="w-3.5 h-3.5 text-gold-soft" />
+                    <span>Enlarge</span>
                   </span>
                 </div>
               </div>
@@ -241,79 +238,75 @@ export const EventCard: React.FC<EventDetails> = ({
         )}
       </article>
 
-      {/* Full Caricature / Invitation Preview Modal */}
-      {showFullCaricature && (selectedViewImage || caricatureImage) && (
+      {/* Fullscreen Lightbox Modal for 100% Uncompressed Visibility */}
+      {isLightboxOpen && displayImage && (
         <div
-          className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 animate-fade-in"
-          onClick={() => setShowFullCaricature(false)}
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${title} image`}
+          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex flex-col items-center justify-center p-3 sm:p-6 transition-opacity animate-in fade-in duration-200"
+          onClick={() => {
+            setIsLightboxOpen(false);
+            setLightboxZoom(false);
+          }}
         >
+          {/* Top Controls Bar */}
           <div
-            className="relative max-w-xl w-full bg-[#fdfbf7] rounded-3xl border-2 border-gold-soft p-4 sm:p-6 shadow-2xl overflow-hidden text-center max-h-[92vh] flex flex-col"
+            className="w-full max-w-4xl flex items-center justify-between py-2 px-3 text-white mb-2"
             onClick={(e) => e.stopPropagation()}
           >
-            <IslamicPatternOverlay opacity={0.04} />
-
-            {/* Close button */}
-            <button
-              type="button"
-              onClick={() => setShowFullCaricature(false)}
-              className="absolute top-4 right-4 z-20 p-2.5 rounded-full bg-white/90 hover:bg-white text-foreground hover:text-rose-deep transition-all shadow-md cursor-pointer border border-gold-soft/40"
-              aria-label="Close modal"
-            >
-              <X className="w-5 h-5" />
-            </button>
-
-            {/* Modal Header */}
-            <div className="mb-3 shrink-0">
-              <span className="font-cinzel text-xs tracking-widest text-[#a84c32] uppercase font-bold">
+            <div className="flex items-center gap-2">
+              <span className="font-cinzel text-xs sm:text-sm font-semibold tracking-wider text-gold-soft">
                 {title}
               </span>
-              <h4 className="font-script text-3xl sm:text-4xl text-rose-deep mt-0.5">
-                Ceremony Illustration
-              </h4>
-
-              {/* Toggle switch between Portrait Caricature & Full E-Card if available */}
-              {fullCardImage && caricatureImage && (
-                <div className="flex items-center justify-center gap-2 mt-2">
-                  <button
-                    type="button"
-                    onClick={() => setSelectedViewImage(caricatureImage)}
-                    className={`px-3 py-1 text-xs rounded-full font-cinzel font-semibold transition-all cursor-pointer ${
-                      selectedViewImage === caricatureImage
-                        ? 'bg-[#a84c32] text-white shadow-xs'
-                        : 'bg-cream text-foreground/70 hover:bg-white border border-gold-soft/50'
-                    }`}
-                  >
-                    Caricature Focus
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setSelectedViewImage(fullCardImage)}
-                    className={`px-3 py-1 text-xs rounded-full font-cinzel font-semibold transition-all cursor-pointer ${
-                      selectedViewImage === fullCardImage
-                        ? 'bg-[#a84c32] text-white shadow-xs'
-                        : 'bg-cream text-foreground/70 hover:bg-white border border-gold-soft/50'
-                    }`}
-                  >
-                    Full Invitation Card
-                  </button>
-                </div>
-              )}
+              <span className="text-white/40 text-xs">•</span>
+              <span className="text-white/80 text-xs font-serif-display">
+                Official Ceremony Invitation Card
+              </span>
             </div>
 
-            {/* Modal Image Container */}
-            <div className="relative rounded-2xl overflow-hidden border-2 border-gold-soft/60 shadow-lg bg-black/5 flex-1 min-h-0 flex items-center justify-center p-1">
-              <img
-                src={selectedViewImage || caricatureImage}
-                alt={`${title} artwork`}
-                className="w-full h-full max-h-[62vh] object-contain rounded-xl"
-              />
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setLightboxZoom(!lightboxZoom)}
+                className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer"
+                title={lightboxZoom ? 'Zoom out' : 'Zoom in'}
+              >
+                {lightboxZoom ? <ZoomOut className="w-5 h-5" /> : <ZoomIn className="w-5 h-5" />}
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setIsLightboxOpen(false);
+                  setLightboxZoom(false);
+                }}
+                className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer"
+                title="Close"
+              >
+                <X className="w-5 h-5" />
+              </button>
             </div>
-
-            <p className="font-serif-display italic text-xs sm:text-sm text-foreground/80 mt-3 shrink-0">
-              {subtitle || description}
-            </p>
           </div>
+
+          {/* Centered High-Res Image Display */}
+          <div
+            className="relative flex items-center justify-center max-w-5xl max-h-[85vh] w-full overflow-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={displayImage}
+              alt={`${title} - Official Ceremony Invitation`}
+              className={`max-h-[82vh] max-w-full object-contain rounded-lg shadow-2xl transition-transform duration-300 ${
+                lightboxZoom ? 'scale-125 cursor-zoom-out' : 'cursor-zoom-in'
+              }`}
+              onClick={() => setLightboxZoom(!lightboxZoom)}
+            />
+          </div>
+
+          {/* Bottom Hint */}
+          <p className="text-white/60 text-xs font-serif-display mt-3 select-none">
+            Click image or use controls to zoom • Press ESC or click outside to close
+          </p>
         </div>
       )}
     </>

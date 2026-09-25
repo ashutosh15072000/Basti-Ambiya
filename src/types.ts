@@ -17,6 +17,7 @@ export interface EventDetails {
   directionsUrl: string;
   caricatureImage?: string;
   caricatureBadge?: string;
+  couplePhoto?: string;
   fullCardImage?: string;
 }
 
