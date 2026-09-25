@@ -15,6 +15,7 @@ import { IslamicPatternOverlay } from './components/IslamicBackground';
 import { AnimatedSection } from './components/AnimatedSection';
 import { FloatingRsvpButton } from './components/FloatingRsvpButton';
 import { InvitationPageCard } from './components/InvitationPageCard';
+import { RsvpExcelManager } from './components/RsvpExcelManager';
 import { getAssetPath } from './utils/assets';
 import { EventDetails } from './types';
 
@@ -98,6 +99,27 @@ export default function App() {
   const [opening, setOpening] = useState(false);
   const [shouldPlayAudio, setShouldPlayAudio] = useState(false);
   const [dateRevealed, setDateRevealed] = useState(false);
+  const [showAdminExcel, setShowAdminExcel] = useState(false);
+
+  useEffect(() => {
+    // Secret trigger for host only: ?admin=rsvp
+    if (typeof window !== 'undefined' && window.location?.search) {
+      const p = new URLSearchParams(window.location.search);
+      if (p.get('admin') === 'rsvp' || p.get('host') === 'rsvp') {
+        setShowAdminExcel(true);
+      }
+    }
+
+    // Secret keyboard shortcut: Ctrl+Shift+E
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'E' || e.key === 'e')) {
+        e.preventDefault();
+        setShowAdminExcel((prev) => !prev);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   useEffect(() => {
     document.title = 'Basit Ali and Ambiya Basher — Wedding Invitation · October 2026';
@@ -323,6 +345,14 @@ export default function App() {
             onStartPlay={() => setShouldPlayAudio(true)}
           />
         </div>
+      )}
+
+      {/* Private Admin Excel & GitHub Manager (Triggered only via ?admin=rsvp or Ctrl+Shift+E) */}
+      {showAdminExcel && (
+        <RsvpExcelManager
+          isOpen={showAdminExcel}
+          onClose={() => setShowAdminExcel(false)}
+        />
       )}
     </div>
   );

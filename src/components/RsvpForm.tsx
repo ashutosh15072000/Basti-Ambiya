@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Heart, Loader2 } from 'lucide-react';
 import { FlowerDivider } from './Ornaments';
 import { RsvpData } from '../types';
+import { addRsvpEntry } from '../services/rsvpExcelService';
 
 const RSVP_EVENTS = [
   {
@@ -55,42 +56,57 @@ export const RsvpForm: React.FC = () => {
     setSubmitting(true);
     setError(null);
 
-    const payload = {
-      guest_name: form.guest_name.trim(),
-      phone: form.phone.trim() || null,
-      attending: form.attending,
-      guest_count: form.attending === 'yes' ? Math.max(1, Math.min(10, form.guest_count)) : 0,
-      events: form.attending === 'yes' ? form.events : [],
-      message: form.message?.trim() || null,
-      submitted_at: new Date().toISOString(),
-    };
-
-    // Save to local storage
     try {
-      const existing = JSON.parse(localStorage.getItem('wedding_rsvps') || '[]');
-      existing.push(payload);
-      localStorage.setItem('wedding_rsvps', JSON.stringify(existing));
-      window.dispatchEvent(new CustomEvent('wedding_rsvp_submitted', { detail: payload }));
-    } catch {
-      // Ignore storage quota error
-    }
+      // Silently saves and appends to the Excel spreadsheet (wedding-rsvps.xlsx)
+      // and automatically pushes/commits the updated Excel file to GitHub in the background
+      await addRsvpEntry({
+        guest_name: form.guest_name.trim(),
+        phone: form.phone.trim() || null,
+        attending: form.attending,
+        guest_count: form.attending === 'yes' ? Math.max(1, Math.min(10, form.guest_count)) : 0,
+        events: form.attending === 'yes' ? form.events : [],
+        dietary: form.dietary?.trim() || null,
+        message: form.message?.trim() || null,
+      });
 
-    // Simulate network delay for natural feel
-    setTimeout(() => {
       setSubmitting(false);
       setSubmitted(true);
-    }, 600);
+    } catch (err: any) {
+      console.error('RSVP submission error:', err);
+      setSubmitting(false);
+      setError('Could not complete submission. Please try again.');
+    }
   };
 
   if (submitted) {
     return (
-      <div className="bg-[#faf8f5]/90 backdrop-blur-sm border border-gold-soft/60 rounded-2xl p-10 shadow-soft text-center max-w-xl mx-auto">
-        <Heart className="mx-auto h-10 w-10 text-rose-deep mb-4 animate-pulse" fill="currentColor" />
+      <div className="bg-[#faf8f5]/90 backdrop-blur-sm border border-gold-soft/60 rounded-2xl p-10 shadow-soft text-center max-w-xl mx-auto space-y-4">
+        <Heart className="mx-auto h-10 w-10 text-rose-deep animate-pulse" fill="currentColor" />
         <h3 className="font-script text-4xl text-rose-deep font-semibold">Thank you!</h3>
         <FlowerDivider />
         <p className="font-serif-display italic text-foreground/80 text-base leading-relaxed">
           Your response has been received. We look forward to celebrating with you!
         </p>
+        <div className="pt-2">
+          <button
+            type="button"
+            onClick={() => {
+              setSubmitted(false);
+              setForm({
+                guest_name: '',
+                phone: '',
+                attending: 'yes',
+                guest_count: 1,
+                events: [],
+                dietary: '',
+                message: '',
+              });
+            }}
+            className="inline-flex items-center gap-1.5 px-6 py-2.5 rounded-full bg-white border border-gold-soft/80 text-foreground font-cinzel text-xs uppercase font-semibold hover:bg-amber-50/50 transition-all cursor-pointer"
+          >
+            Submit Another RSVP
+          </button>
+        </div>
       </div>
     );
   }

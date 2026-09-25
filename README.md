@@ -1,8 +1,19 @@
-# Ambiya & Basti Ali — Muslim Wedding Invitation Website 🕊️✨
+# Ambiya & Basit Ali — Muslim Wedding Invitation Website 🕊️✨
 
-A luxury Muslim Wedding Invitation and Nikah celebration web application for **Ambiya & Basti Ali** (29th October 2026).
+A luxury Muslim Wedding Invitation and celebration web application for **Ambiya Basher & Basit Ali** (29th October 2026).
 
 Built with **React 19**, **Vite**, **TypeScript**, and **Tailwind CSS**.
+
+---
+
+## 📊 RSVP Data & Excel Sheet Sync on GitHub
+
+The RSVP system automatically generates and maintains the Excel spreadsheet:
+- File location: `wedding-rsvps.xlsx` (and `public/wedding-rsvps.xlsx`)
+- As guests fill out the RSVP form, their response is appended to the Excel workbook in real time.
+- **Privacy First**: The Excel spreadsheet and guest list are completely hidden from the public website visitors.
+- **Direct GitHub Sync**: When configured with a GitHub Personal Access Token (or repo permissions), each new RSVP submission commits the updated Excel spreadsheet directly to your GitHub repository in the background.
+- **Host Access**: The wedding hosts can privately access the Excel management portal by adding `?admin=rsvp` to the URL or by pressing `Ctrl + Shift + E`.
 
 ---
 
