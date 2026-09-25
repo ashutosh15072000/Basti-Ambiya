@@ -17,8 +17,8 @@ export const WeddingVideoSection: React.FC = () => {
 
   const handleVideoError = () => {
     // If v10.mp4 is not yet uploaded, gracefully fall back to the existing intro film
-    if (currentVideoSrc !== getAssetPath('assets/intro-BHGRpJmm.mp4')) {
-      setCurrentVideoSrc(getAssetPath('assets/intro-BHGRpJmm.mp4'));
+    if (currentVideoSrc !== getAssetPath('assets/v10.mp4')) {
+      setCurrentVideoSrc(getAssetPath('assets/v10.mp4'));
     }
   };
 
