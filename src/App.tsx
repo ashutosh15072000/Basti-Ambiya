@@ -124,7 +124,7 @@ export default function App() {
         <main className="relative animate-fade-in bg-cream">
           {/* Invitation Suite Section - Clean presentation without background distractions */}
           <section className="relative w-full pt-4 sm:pt-10 pb-12 sm:pb-16 flex flex-col items-center justify-center px-1 sm:px-4 md:px-6 select-none border-b border-gold-soft/30">
-            {/* Page 1 (New page 1 before first page) */}
+            {/* Page 1 (Prelude page before main invitation) */}
             <AnimatedSection direction="up" durationMs={700}>
               <InvitationPageCard
                 pageLabel="Wedding Suite · Page 1"
@@ -133,56 +133,26 @@ export default function App() {
                 candidateFilenames={[
                   'page 0.png',
                   'page0.png',
-                  'page -2.png',
-                  'page-2.png',
                   'cover.png',
                   'cover 1.png',
                   'cover1.png',
+                  'intro.png',
                   'intro 1.png',
-                  'intro1.png',
                   'page a.png',
                   'page_a.png',
-                  'page01.png',
-                  'page 01.png',
                   'page 0.jpg',
                   'page 0.jpeg',
+                  'cover.jpg',
                 ]}
-                altText="Ambiya & Basit Ali — Wedding Suite Prelude Page 1"
+                altText="Ambiya & Basit Ali — Wedding Suite Prelude Page"
                 storageKey="suite_page_0"
               />
             </AnimatedSection>
 
-            {/* Page 2 (New page 2 before first page) */}
+            {/* Page 2 (Main Invitation - page 1.png) - Full Size & Background Removed */}
             <AnimatedSection direction="up" durationMs={700} delayMs={150}>
               <InvitationPageCard
-                pageLabel="Wedding Suite · Page 2"
-                pageTitle="Joyous Union Announcement"
-                defaultFilename="page 00.png"
-                candidateFilenames={[
-                  'page 00.png',
-                  'page00.png',
-                  'page -1.png',
-                  'page-1.png',
-                  'cover 2.png',
-                  'cover2.png',
-                  'intro 2.png',
-                  'intro2.png',
-                  'page b.png',
-                  'page_b.png',
-                  'page02.png',
-                  'page 02.png',
-                  'page 00.jpg',
-                  'page 00.jpeg',
-                ]}
-                altText="Ambiya & Basit Ali — Wedding Suite Prelude Page 2"
-                storageKey="suite_page_00"
-              />
-            </AnimatedSection>
-
-            {/* Page 3 (The main first page - page 1.png) - Full Size & Background Removed */}
-            <AnimatedSection direction="up" durationMs={700} delayMs={300}>
-              <InvitationPageCard
-                pageLabel="Wedding Suite · Page 3 (Main Invitation)"
+                pageLabel="Wedding Suite · Page 2 (Main Invitation)"
                 pageTitle="Basit Ali & Ambiya Basher"
                 defaultFilename="page 1.png"
                 candidateFilenames={[
