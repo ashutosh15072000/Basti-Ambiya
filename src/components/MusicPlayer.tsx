@@ -11,7 +11,7 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({
   play,
   src,
 }) => {
-  const audioSrc = src || getAssetPath('audio/background.mp3');
+  const audioSrc = src || getAssetPath('audio/afreen_humming.mp3');
   const audioRef = useRef<HTMLAudioElement>(null);
   const [muted, setMuted] = useState(false);
 
