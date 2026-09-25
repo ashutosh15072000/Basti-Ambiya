@@ -20,7 +20,7 @@ import { EventDetails } from './types';
 
 const EVENTS_SCHEDULE: EventDetails[] = [
   {
-    title: 'The Sacred Wedding & Rukhsati',
+    title: 'Rukhsati',
     arabicTitle: 'رخصة الزفاف المباركة',
     description: 'The sacred Islamic marriage celebrations solemnized under the divine grace of Allah (SWT), followed by a celebratory royal dinner banquet.',
     day: 'THU',
@@ -142,6 +142,7 @@ export default function App() {
       {/* Main Wedding Invitation Page - pre-mounted for instant zero-latency display */}
       <main className="relative bg-cream">
         {/* Invitation Suite Section - Clean presentation without background distractions */}
+  
         <section className="relative w-full pt-4 sm:pt-10 pb-12 sm:pb-16 flex flex-col items-center justify-center px-1 sm:px-4 md:px-6 select-none border-b border-gold-soft/30">
           {/* Page 1 (Prelude page before main invitation) */}
           <AnimatedSection direction="up" durationMs={700}>
