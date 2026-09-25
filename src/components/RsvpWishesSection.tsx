@@ -285,7 +285,7 @@ export const RsvpWishesSection: React.FC = () => {
               No Messages Yet
             </h3>
             <p className="font-serif-display italic text-foreground/75 text-sm sm:text-base leading-relaxed mb-6">
-              Be the first to share your warm prayers, Duas, and heartfelt wishes for Basti Ali and Ambiya Basher!
+              Be the first to share your warm prayers, Duas, and heartfelt wishes for Basit Ali and Ambiya Basher!
             </p>
             <button
               type="button"
@@ -497,7 +497,7 @@ export const RsvpWishesSection: React.FC = () => {
             >
               <div className="text-center mb-6">
                 <span className="font-cinzel text-xs text-[#a84c32] tracking-widest font-bold uppercase block mb-1">
-                  Basti Ali and Ambiya Basher
+                  Basit Ali and Ambiya Basher
                 </span>
                 <h3 className="font-script text-4xl text-rose-deep">
                   Share Your Duas &amp; Wishes

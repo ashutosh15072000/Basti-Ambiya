@@ -9,7 +9,7 @@ interface HeroInvitationCardProps {
 
 export const HeroInvitationCard: React.FC<HeroInvitationCardProps> = ({
   imageSrc = getAssetPath('assets/page 1.png'),
-  altText = 'Basti Ali and Ambiya Basher — Sacred Wedding Invitation Page 1',
+  altText = 'Basit Ali and Ambiya Basher — Sacred Wedding Invitation Page 1',
 }) => {
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [lightboxZoom, setLightboxZoom] = useState(false);
@@ -98,7 +98,7 @@ export const HeroInvitationCard: React.FC<HeroInvitationCardProps> = ({
             </p>
 
             <span className="text-xs font-cinzel tracking-wider text-[#a84c32] font-semibold">
-              ✦ Basti Ali and Ambiya Basher ✦
+              ✦ Basit Ali and Ambiya Basher ✦
             </span>
           </div>
         )}
@@ -123,7 +123,7 @@ export const HeroInvitationCard: React.FC<HeroInvitationCardProps> = ({
                 Wedding Invitation Page 1
               </p>
               <h4 className="font-serif-display text-lg sm:text-xl font-bold">
-                Basti Ali and Ambiya Basher
+                Basit Ali and Ambiya Basher
               </h4>
             </div>
 

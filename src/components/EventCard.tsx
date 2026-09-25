@@ -86,7 +86,7 @@ export const EventCard: React.FC<EventDetails> = ({
   // Event color scheme accents
   const isHaldi = title.toLowerCase().includes('haldi');
   const isMehndi = title.toLowerCase().includes('mehndi') || title.toLowerCase().includes('sangeet');
-  const isRukhsita = title.toLowerCase().includes('rukhsita') || title.toLowerCase().includes('nikah') || title.toLowerCase().includes('wedding');
+  const isRukhsati = title.toLowerCase().includes('rukhsati') || title.toLowerCase().includes('rukhsita') || title.toLowerCase().includes('nikah') || title.toLowerCase().includes('wedding');
   const isReception = title.toLowerCase().includes('reception');
 
   const themeAccent = isHaldi
@@ -101,7 +101,7 @@ export const EventCard: React.FC<EventDetails> = ({
         badge: 'bg-emerald-100/95 text-emerald-950 border-emerald-300',
         glow: 'from-emerald-600/10 via-emerald-200/5 to-transparent',
       }
-    : isRukhsita
+    : isRukhsati
     ? {
         border: 'border-[#93203c]/60',
         badge: 'bg-rose-100/95 text-[#93203c] border-rose-300',
@@ -119,7 +119,7 @@ export const EventCard: React.FC<EventDetails> = ({
         glow: 'from-amber-600/10 via-amber-200/5 to-transparent',
       };
 
-  const badgeText = caricatureBadge?.replace(/^(Ambiya & Basti Ali|Basti Ali and Ambiya Basher) ·\s*/, '') || title;
+  const badgeText = caricatureBadge?.replace(/^(Ambiya & (Basti|Basit) Ali|(Basti|Basit) Ali and Ambiya Basher) ·\s*/, '') || title;
 
   return (
     <>

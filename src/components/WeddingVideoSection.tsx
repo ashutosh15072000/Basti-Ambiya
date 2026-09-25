@@ -16,8 +16,9 @@ export const WeddingVideoSection: React.FC = () => {
   const [currentVideoSrc, setCurrentVideoSrc] = useState(getAssetPath('assets/v10.mp4'));
 
   const handleVideoError = () => {
-    if (currentVideoSrc !== getAssetPath('assets/v10.mp4')) {
-      setCurrentVideoSrc(getAssetPath('assets/v10.mp4'));
+    // If v10.mp4 is not yet uploaded, gracefully fall back to the existing intro film
+    if (currentVideoSrc !== getAssetPath('assets/intro-BHGRpJmm.mp4')) {
+      setCurrentVideoSrc(getAssetPath('assets/intro-BHGRpJmm.mp4'));
     }
   };
 
@@ -99,7 +100,7 @@ export const WeddingVideoSection: React.FC = () => {
             </h2>
 
             <p className="font-serif-display italic text-sm sm:text-base text-foreground/75 mt-2 max-w-lg mx-auto">
-              A glimpse into the sacred journey, joyous memories, and wedding celebration of Basti Ali and Ambiya Basher.
+              A glimpse into the sacred journey, joyous memories, and wedding celebration of Basit Ali and Ambiya Basher.
             </p>
 
             <FlowerDivider />
@@ -199,7 +200,7 @@ export const WeddingVideoSection: React.FC = () => {
 
                 <div className="flex items-center gap-1 text-[11px] font-cinzel tracking-wider text-white/70">
                   <Film className="w-3.5 h-3.5 text-gold-soft" />
-                  <span>Basti Ali and Ambiya Basher</span>
+                  <span>Basit Ali and Ambiya Basher</span>
                 </div>
 
                 <div className="flex items-center gap-2">

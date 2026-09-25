@@ -20,7 +20,7 @@ import { EventDetails } from './types';
 
 const EVENTS_SCHEDULE: EventDetails[] = [
   {
-    title: 'The Sacred Wedding & Rukhsita',
+    title: 'The Sacred Wedding & Rukhsati',
     arabicTitle: 'رخصة الزفاف المباركة',
     description: 'The sacred Islamic marriage celebrations solemnized under the divine grace of Allah (SWT), followed by a celebratory royal dinner banquet.',
     day: 'THU',
@@ -30,13 +30,13 @@ const EVENTS_SCHEDULE: EventDetails[] = [
     dayOfMonth: '29',
     monthName: 'October',
     year: '2026',
-    time: 'Rukhsita at 06:30 PM | Royal Banquet at 08:00 PM',
+    time: 'Rukhsati at 06:30 PM | Royal Banquet at 08:00 PM',
     venue: 'Shimla Resort',
     dressCode: 'Royal Traditional / Modest Luxury',
     directionsUrl: 'https://maps.app.goo.gl/oNb7LC2ZuKpFT9b7A?g_st=ac',
     couplePhoto: getAssetPath('assets/SSG09645-C19LQ60y.webp'),
     caricatureImage: getAssetPath('assets/SSG09645-C19LQ60y.webp'),
-    caricatureBadge: 'Basti Ali and Ambiya Basher · Sacred Rukhsita 🕊️',
+    caricatureBadge: 'Basit Ali and Ambiya Basher · Sacred Rukhsati 🕊️',
     fullCardImage: getAssetPath('assets/Basti&Ambiya11.webp'),
     cardImageCandidates: [
       getAssetPath('assets/Basti&Ambiya11.webp'),
@@ -68,7 +68,7 @@ const EVENTS_SCHEDULE: EventDetails[] = [
     directionsUrl: 'https://maps.app.goo.gl/VC1HVfJNPzLf7CNy9',
     couplePhoto: getAssetPath('assets/SSG00440-Dz91S7X0.webp'),
     caricatureImage: getAssetPath('assets/SSG00440-Dz91S7X0.webp'),
-    caricatureBadge: 'Basti Ali and Ambiya Basher · Wedding Reception 👑',
+    caricatureBadge: 'Basit Ali and Ambiya Basher · Wedding Reception 👑',
     fullCardImage: getAssetPath('assets/page3( 30 oct).webp'),
     cardImageCandidates: [
       getAssetPath('assets/page3( 30 oct).webp'),
@@ -92,7 +92,7 @@ const EVENTS_SCHEDULE: EventDetails[] = [
     directionsUrl: 'https://maps.app.goo.gl/YeqWGNYWq3HWQegm9',
     couplePhoto: getAssetPath('assets/SSG00440-Dz91S7X0.webp'),
     caricatureImage: getAssetPath('assets/SSG00440-Dz91S7X0.webp'),
-    caricatureBadge: 'Basti Ali and Ambiya Basher · Wedding Reception 👑',
+    caricatureBadge: 'Basit Ali and Ambiya Basher · Wedding Reception 👑',
     fullCardImage: getAssetPath('assets/page 4 (2 Nov).webp'),
     cardImageCandidates: [
       getAssetPath('assets/page 4 (2 Nov).webp'),
@@ -108,7 +108,7 @@ export default function App() {
   const [dateRevealed, setDateRevealed] = useState(false);
 
   useEffect(() => {
-    document.title = 'Basti Ali and Ambiya Basher — Wedding Invitation · October 2026';
+    document.title = 'Basit Ali and Ambiya Basher — Wedding Invitation · October 2026';
     const metaDesc =
       document.querySelector('meta[name="description"]') ||
       (() => {
@@ -119,7 +119,7 @@ export default function App() {
       })();
     metaDesc.setAttribute(
       'content',
-      'Join Basti Ali and Ambiya Basher for their sacred Rukhsita & wedding celebrations on Thursday, 29 October 2026.'
+      'Join Basit Ali and Ambiya Basher for their sacred Rukhsati & wedding celebrations on Thursday, 29 October 2026.'
     );
   }, []);
 
@@ -163,7 +163,7 @@ export default function App() {
                 'page 0.jpeg',
                 'cover.jpg',
               ]}
-              altText="Basti Ali and Ambiya Basher — Wedding Suite Prelude Page"
+              altText="Basit Ali and Ambiya Basher — Wedding Suite Prelude Page"
               storageKey="suite_page_0"
             />
           </AnimatedSection>
@@ -172,7 +172,7 @@ export default function App() {
           <AnimatedSection direction="up" durationMs={700} delayMs={150}>
             <InvitationPageCard
               pageLabel="Wedding Suite · Page 2 (Main Invitation)"
-              pageTitle="Basti Ali and Ambiya Basher"
+              pageTitle="Basit Ali and Ambiya Basher"
               defaultFilename="page 1.webp"
               candidateFilenames={[
                 'page 1.webp',
@@ -182,7 +182,7 @@ export default function App() {
                 'page 1.jpg',
                 'page 1.jpeg',
               ]}
-              altText="Basti Ali and Ambiya Basher — Sacred Wedding Invitation"
+              altText="Basit Ali and Ambiya Basher — Sacred Wedding Invitation"
               storageKey="suite_page_1"
             />
           </AnimatedSection>

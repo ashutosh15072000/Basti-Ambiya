@@ -9,8 +9,10 @@ export const Footer: React.FC = () => {
       <div className="relative z-10 max-w-xl mx-auto">
         <p className="font-cinzel text-xs tracking-[0.4em] text-gold-soft">WITH DUAS &amp; LOVE</p>
         <h3 className="font-script text-5xl sm:text-6xl text-cream mt-3">
-          <span className="font-script-capital-a">B</span>asti Ali &amp;{' '}
-          <span className="font-script-capital-a">A</span>mbiya Basher
+          <span className="font-script-capital-a">B</span>asit{' '}
+          <span className="font-script-capital-a">A</span>li &amp;{' '}
+          <span className="font-script-capital-a">A</span>mbiya{' '}
+          <span className="font-script-capital-a">B</span>asher
         </h3>
 
         <div className="my-5 flex items-center justify-center gap-3">
