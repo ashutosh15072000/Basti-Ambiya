@@ -28,7 +28,7 @@ export const Footer: React.FC = () => {
           "May Allah bless for you, and shower His blessings upon you, and unite you in goodness."
         </p>
 
-        <p className="font-serif-display text-lg italic text-gold-soft">Thursday, 29th October 2026</p>
+        <p className="font-serif-display text-lg italic text-gold-soft"></p>
         <p className="mt-3 font-cinzel text-xs tracking-widest text-cream/80 uppercase font-semibold">
           #BasitGotAmbitious
         </p>
