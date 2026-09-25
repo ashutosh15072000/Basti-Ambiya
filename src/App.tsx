@@ -37,7 +37,7 @@ const EVENTS_SCHEDULE: EventDetails[] = [
     couplePhoto: getAssetPath('assets/SSG09645-C19LQ60y.webp'),
     caricatureImage: getAssetPath('assets/SSG09645-C19LQ60y.webp'),
     caricatureBadge: 'Basit Ali and Ambiya Basher · Sacred Rukhsati 🕊️',
-    fullCardImage: getAssetPath('assets/Basti&Ambiya11.webp'),
+    fullCardImage: getAssetPath('assets/page 2(oct 29).webp'),
     cardImageCandidates: [
       getAssetPath('assets/page 2(oct 29).webp'),
       getAssetPath('assets/page 2(oct 29).png'),
