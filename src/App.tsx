@@ -37,7 +37,7 @@ const EVENTS_SCHEDULE: EventDetails[] = [
     couplePhoto: getAssetPath('assets/SSG09645-C19LQ60y.webp'),
     caricatureImage: getAssetPath('assets/SSG09645-C19LQ60y.webp'),
     caricatureBadge: 'Basti Ali and Ambiya Basher · Sacred Rukhsita 🕊️',
-    fullCardImage: getAssetPath('assets/page 2(oct 29).webp'),
+    fullCardImage: getAssetPath('assets/page 2(oct 29).png'),
   },
   {
     title: 'Wedding Reception',
