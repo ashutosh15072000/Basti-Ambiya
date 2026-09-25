@@ -30,7 +30,7 @@ const EVENTS_SCHEDULE: EventDetails[] = [
     dayOfMonth: '29',
     monthName: 'October',
     year: '2026',
-    time: 'Rukhsati at 08:30 PM ',
+    time: 'Rukhsati at 08:00 PM ',
     venue: 'Shimla Resort',
     dressCode: 'Royal Traditional / Modest Luxury',
     directionsUrl: 'https://maps.app.goo.gl/oNb7LC2ZuKpFT9b7A?g_st=ac',
