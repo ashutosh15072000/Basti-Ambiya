@@ -13,7 +13,7 @@ export const WeddingVideoSection: React.FC = () => {
   const [progress, setProgress] = useState(0);
   const [showControls, setShowControls] = useState(true);
 
-  const videoSrc = getAssetPath('assets/v1.mp4');
+  const videoSrc = getAssetPath('assets/v10.mp4');
 
   const togglePlay = () => {
     if (!videoRef.current) return;
