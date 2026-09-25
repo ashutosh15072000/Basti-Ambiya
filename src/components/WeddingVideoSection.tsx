@@ -13,7 +13,13 @@ export const WeddingVideoSection: React.FC = () => {
   const [progress, setProgress] = useState(0);
   const [showControls, setShowControls] = useState(true);
 
-  const videoSrc = getAssetPath('assets/v10.mp4');
+  const [currentVideoSrc, setCurrentVideoSrc] = useState(getAssetPath('assets/v10.mp4'));
+
+  const handleVideoError = () => {
+    if (currentVideoSrc !== getAssetPath('assets/intro-BHGRpJmm.mp4')) {
+      setCurrentVideoSrc(getAssetPath('assets/intro-BHGRpJmm.mp4'));
+    }
+  };
 
   const togglePlay = () => {
     if (!videoRef.current) return;
@@ -115,7 +121,7 @@ export const WeddingVideoSection: React.FC = () => {
             >
               <video
                 ref={videoRef}
-                src={`${videoSrc}#t=0.1`}
+                src={`${currentVideoSrc}#t=0.1`}
                 playsInline
                 muted={isMuted}
                 loop
@@ -124,6 +130,7 @@ export const WeddingVideoSection: React.FC = () => {
                 onEnded={handleVideoEnded}
                 onPlay={() => setIsPlaying(true)}
                 onPause={() => setIsPlaying(false)}
+                onError={handleVideoError}
                 onClick={togglePlay}
                 className="w-full h-full object-cover cursor-pointer"
               />

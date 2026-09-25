@@ -37,7 +37,17 @@ const EVENTS_SCHEDULE: EventDetails[] = [
     couplePhoto: getAssetPath('assets/SSG09645-C19LQ60y.webp'),
     caricatureImage: getAssetPath('assets/SSG09645-C19LQ60y.webp'),
     caricatureBadge: 'Basti Ali and Ambiya Basher · Sacred Rukhsita 🕊️',
-    fullCardImage: getAssetPath('assets/page 2(oct 29).png'),
+    fullCardImage: getAssetPath('assets/Basit&Ambiya11.webp'),
+    cardImageCandidates: [
+      getAssetPath('assets/Basit&Ambiya11.webp'),
+      getAssetPath('assets/Basit&Ambiya11.png'),
+      getAssetPath('assets/basit-ambiya-card.webp'),
+      getAssetPath('assets/basit-ambiya-card.png'),
+      getAssetPath('assets/page2.webp'),
+      getAssetPath('assets/page2.png'),
+      getAssetPath('assets/page 2(oct 29).webp'),
+      getAssetPath('assets/page 2(oct 29).png'),
+    ],
   },
   {
     title: 'Wedding Reception',
@@ -58,6 +68,10 @@ const EVENTS_SCHEDULE: EventDetails[] = [
     caricatureImage: getAssetPath('assets/SSG00440-Dz91S7X0.webp'),
     caricatureBadge: 'Basti Ali and Ambiya Basher · Wedding Reception 👑',
     fullCardImage: getAssetPath('assets/page3( 30 oct).webp'),
+    cardImageCandidates: [
+      getAssetPath('assets/page3( 30 oct).webp'),
+      getAssetPath('assets/page3( 30 oct).png'),
+    ],
   },
   {
     title: 'Wedding Reception',
@@ -78,6 +92,10 @@ const EVENTS_SCHEDULE: EventDetails[] = [
     caricatureImage: getAssetPath('assets/SSG00440-Dz91S7X0.webp'),
     caricatureBadge: 'Basti Ali and Ambiya Basher · Wedding Reception 👑',
     fullCardImage: getAssetPath('assets/page 4 (2 Nov).webp'),
+    cardImageCandidates: [
+      getAssetPath('assets/page 4 (2 Nov).webp'),
+      getAssetPath('assets/page 4 (2 Nov).png'),
+    ],
   }
 ];
 
@@ -142,7 +160,6 @@ export default function App() {
                 'page 0.jpg',
                 'page 0.jpeg',
                 'cover.jpg',
-                'Basti&Ambiya11.webp',
               ]}
               altText="Basti Ali and Ambiya Basher — Wedding Suite Prelude Page"
               storageKey="suite_page_0"

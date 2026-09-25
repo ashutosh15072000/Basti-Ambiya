@@ -18,6 +18,7 @@ export const EventCard: React.FC<EventDetails> = ({
   description,
   caricatureBadge,
   fullCardImage,
+  cardImageCandidates,
 }) => {
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [lightboxZoom, setLightboxZoom] = useState(false);
@@ -36,23 +37,51 @@ export const EventCard: React.FC<EventDetails> = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isLightboxOpen]);
 
-  // Event card image is exclusively the official ceremony invitation card page
-  const [currentImageSrc, setCurrentImageSrc] = useState(fullCardImage);
-  const [imageLoaded, setImageLoaded] = useState(false);
+  // Build ordered list of candidate image paths
+  const candidateList = React.useMemo(() => {
+    const list: string[] = [];
+    if (fullCardImage) list.push(fullCardImage);
+    if (cardImageCandidates && cardImageCandidates.length > 0) {
+      cardImageCandidates.forEach((c) => {
+        if (c && !list.includes(c)) list.push(c);
+      });
+    }
+    return list;
+  }, [fullCardImage, cardImageCandidates]);
 
+  const [candidateIndex, setCandidateIndex] = useState(0);
+  const [imageError, setImageError] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const imgRef = React.useRef<HTMLImageElement>(null);
+
+  const currentImageSrc = candidateList[candidateIndex] || fullCardImage || '';
+
+  // Synchronize when candidates or props change
   useEffect(() => {
-    setCurrentImageSrc(fullCardImage);
+    setCandidateIndex(0);
+    setImageError(false);
     setImageLoaded(false);
-  }, [fullCardImage]);
+  }, [fullCardImage, cardImageCandidates]);
+
+  // Check if image is already cached/complete in memory
+  useEffect(() => {
+    if (imgRef.current && imgRef.current.complete && imgRef.current.naturalWidth > 0) {
+      setImageLoaded(true);
+    }
+  }, [currentImageSrc]);
 
   const handleImageError = () => {
-    if (currentImageSrc && currentImageSrc.endsWith('.webp')) {
-      // Fallback from .webp to .png
-      setCurrentImageSrc(currentImageSrc.replace(/\.webp$/i, '.png'));
+    if (candidateIndex < candidateList.length - 1) {
+      // Try next candidate
+      setCandidateIndex((prev) => prev + 1);
+      setImageLoaded(false);
+    } else {
+      // All candidates exhausted
+      setImageError(true);
     }
   };
 
-  const displayImage = currentImageSrc;
+  const displayImage = !imageError ? currentImageSrc : undefined;
 
   // Event color scheme accents
   const isHaldi = title.toLowerCase().includes('haldi');
@@ -119,20 +148,27 @@ export const EventCard: React.FC<EventDetails> = ({
                 className="relative w-full bg-[#fbf9f5] flex items-center justify-center p-1 sm:p-2 cursor-pointer transition-transform duration-300 group-hover:bg-[#f6f0e6] min-h-[220px]"
                 title="Click to view full screen"
               >
-                {!imageLoaded && (
+                {!imageLoaded && !imageError && (
                   <div className="absolute inset-0 bg-gradient-to-r from-cream via-[#f5ede0] to-cream animate-pulse rounded-xl" />
                 )}
-                <img
-                  src={currentImageSrc || ''}
-                  alt={`${title} - Official Ceremony Invitation`}
-                  loading="eager"
-                  decoding="async"
-                  onLoad={() => setImageLoaded(true)}
-                  onError={handleImageError}
-                  className={`w-full h-auto max-h-[540px] object-contain rounded-xl shadow-xs transition-opacity duration-300 group-hover:scale-[1.01] ${
-                    imageLoaded ? 'opacity-100' : 'opacity-0'
-                  }`}
-                />
+                {!imageError ? (
+                  <img
+                    ref={imgRef}
+                    src={currentImageSrc}
+                    alt={`${title} - Official Ceremony Invitation`}
+                    loading="eager"
+                    decoding="async"
+                    onLoad={() => setImageLoaded(true)}
+                    onError={handleImageError}
+                    className="w-full h-auto max-h-[540px] object-contain rounded-xl shadow-xs transition-opacity duration-300 group-hover:scale-[1.01]"
+                  />
+                ) : (
+                  <div className="p-8 text-center bg-white/95 rounded-xl border border-gold-soft/60">
+                    <Sparkles className="w-8 h-8 text-gold mx-auto mb-2" />
+                    <p className="font-serif-display text-sm text-[#2b1f1a]">Official Ceremony Card</p>
+                    <span className="font-cinzel text-xs text-[#a84c32] font-semibold">{title}</span>
+                  </div>
+                )}
 
                 {/* Enlarge Hint Overlay */}
                 <div className="absolute bottom-3 right-3 z-20 opacity-90 group-hover:opacity-100 transition-opacity">

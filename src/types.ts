@@ -19,6 +19,7 @@ export interface EventDetails {
   caricatureBadge?: string;
   couplePhoto?: string;
   fullCardImage?: string;
+  cardImageCandidates?: string[];
 }
 
 export interface GalleryItem {

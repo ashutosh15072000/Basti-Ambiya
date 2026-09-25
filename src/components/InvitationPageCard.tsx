@@ -36,17 +36,27 @@ export const InvitationPageCard: React.FC<InvitationPageCardProps> = ({
   });
 
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const imgRef = useRef<HTMLImageElement>(null);
 
   const currentSrc = localPreview || getAssetPath(`assets/${candidateFilenames[candidateIndex] || defaultFilename}`);
+
+  // Check if image is already cached/complete in memory
+  useEffect(() => {
+    if (imgRef.current && imgRef.current.complete && imgRef.current.naturalWidth > 0) {
+      setImageLoaded(true);
+    }
+  }, [currentSrc]);
 
   const handleImageError = () => {
     if (localPreview) {
       // If local preview failed, clear it and try candidate paths
       setLocalPreview(null);
+      setImageLoaded(false);
       return;
     }
     if (candidateIndex < candidateFilenames.length - 1) {
       setCandidateIndex((prev) => prev + 1);
+      setImageLoaded(false);
     } else {
       setImageError(true);
     }
@@ -105,15 +115,14 @@ export const InvitationPageCard: React.FC<InvitationPageCardProps> = ({
             )}
 
             <img
+              ref={imgRef}
               src={currentSrc}
               alt={altText}
               loading="eager"
               decoding="async"
               onLoad={() => setImageLoaded(true)}
               onError={handleImageError}
-              className={`w-full h-auto object-contain rounded-2xl sm:rounded-3xl shadow-xs transition-opacity duration-300 group-hover:scale-[1.006] ${
-                imageLoaded ? 'opacity-100' : 'opacity-0'
-              }`}
+              className="w-full h-auto object-contain rounded-2xl sm:rounded-3xl shadow-xs transition-opacity duration-300 group-hover:scale-[1.006]"
             />
 
             {/* Enlarge Hint Overlay Badge */}
