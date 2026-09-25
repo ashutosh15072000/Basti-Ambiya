@@ -37,7 +37,7 @@ const EVENTS_SCHEDULE: EventDetails[] = [
     couplePhoto: getAssetPath('assets/SSG09645-C19LQ60y.jpg'),
     caricatureImage: getAssetPath('assets/SSG09645-C19LQ60y.jpg'),
     caricatureBadge: 'Ambiya & Basti Ali · Sacred Nikah 🕊️',
-    fullCardImage: getAssetPath('assets/page 2(oct 29).jpg'),
+    fullCardImage: getAssetPath('assets/page 2(oct 29).png'),
   },
   {
     title: 'Wedding Reception',
@@ -57,7 +57,7 @@ const EVENTS_SCHEDULE: EventDetails[] = [
     couplePhoto: getAssetPath('assets/SSG00440-Dz91S7X0.jpg'),
     caricatureImage: getAssetPath('assets/SSG00440-Dz91S7X0.jpg'),
     caricatureBadge: 'Ambiya & Basti Ali · Wedding Reception 👑',
-    fullCardImage: getAssetPath('assets/page3( 30 oct).jpg'),
+    fullCardImage: getAssetPath('assets/page3( 30 oct).png'),
   },
   {
     title: 'Wedding Reception',
@@ -77,7 +77,7 @@ const EVENTS_SCHEDULE: EventDetails[] = [
     couplePhoto: getAssetPath('assets/SSG00440-Dz91S7X0.jpg'),
     caricatureImage: getAssetPath('assets/SSG00440-Dz91S7X0.jpg'),
     caricatureBadge: 'Ambiya & Basti Ali · Wedding Reception 👑',
-    fullCardImage: getAssetPath('assets/page 4 (2 Nov).jpg'),
+    fullCardImage: getAssetPath('assets/page 4 (2 Nov).png'),
   }
 ];
 
