@@ -18,27 +18,8 @@ import { getAssetPath } from './utils/assets';
 import { EventDetails } from './types';
 
 const EVENTS_SCHEDULE: EventDetails[] = [
-  {
-    title: 'Mehndi & Sangeet Night',
-    arabicTitle: 'ليلة الحناء والبهجة',
-    description: 'An enchanting evening of intricate henna patterns, celebratory melodies, twirls, and festive dancing.',
-    day: 'WED',
-    date: 'October 28, 2026',
-    subtitle: 'Intricate Henna, Twirls & Lights',
-    dayOfWeek: 'Wednesday',
-    dayOfMonth: '28',
-    monthName: 'October',
-    year: '2026',
-    time: '06:30 PM Onwards',
-    venue: 'The Grand Crystal Ballroom',
-    dressCode: 'Emerald Green & Festive Pastels',
-    directionsUrl: 'https://maps.google.com/?q=Grand+Crystal+Ballroom',
-    couplePhoto: getAssetPath('assets/IMG_9318-CfLmeoUo.jpeg'),
-    caricatureImage: getAssetPath('assets/IMG_9318-CfLmeoUo.jpeg'),
-    caricatureBadge: 'Ambiya & Basti Ali · Mehndi Twirls 🌿',
-    fullCardImage: getAssetPath('assets/3-CJu4tegY.jpg'),
-  },
-  {
+     
+    {
     title: 'The Sacred Wedding & Nikah',
     arabicTitle: 'عقد النكاح المبارك',
     description: 'The sacred Islamic marriage covenant solemnized under the divine grace of Allah (SWT), followed by a celebratory royal dinner banquet.',
@@ -52,11 +33,11 @@ const EVENTS_SCHEDULE: EventDetails[] = [
     time: 'Nikah at 06:30 PM | Royal Banquet at 08:00 PM',
     venue: 'Shimla Resort',
     dressCode: 'Royal Traditional / Modest Luxury',
-    directionsUrl: 'https://maps.google.com/?q=Shimla+Resort',
+    directionsUrl: 'https://maps.app.goo.gl/oNb7LC2ZuKpFT9b7A?g_st=ac',
     couplePhoto: getAssetPath('assets/SSG09645-C19LQ60y.jpg'),
     caricatureImage: getAssetPath('assets/SSG09645-C19LQ60y.jpg'),
     caricatureBadge: 'Ambiya & Basti Ali · Sacred Nikah 🕊️',
-    fullCardImage: getAssetPath('assets/4-B5oaKVPm.jpg'),
+    fullCardImage: getAssetPath('assets/page 2(oct 29).jpg'),
   },
   {
     title: 'Wedding Reception',
@@ -72,12 +53,32 @@ const EVENTS_SCHEDULE: EventDetails[] = [
     time: '07:30 PM Onwards',
     venue: 'Hotel Ramada',
     dressCode: 'Formal Evening Elegance',
-    directionsUrl: 'https://maps.google.com/?q=Hotel+Ramada',
+    directionsUrl: 'https://maps.app.goo.gl/VC1HVfJNPzLf7CNy9',
     couplePhoto: getAssetPath('assets/SSG00440-Dz91S7X0.jpg'),
     caricatureImage: getAssetPath('assets/SSG00440-Dz91S7X0.jpg'),
     caricatureBadge: 'Ambiya & Basti Ali · Wedding Reception 👑',
-    fullCardImage: getAssetPath('assets/5-T8V7x-co.jpg'),
+    fullCardImage: getAssetPath('assets/page3( 30 oct).jpg'),
   },
+  {
+    title: 'Wedding Reception',
+    arabicTitle: 'وليمة العرس المباركة',
+    description: 'The joyous feast and grand evening banquet honoring family and dear friends to celebrate the newlyweds.',
+    day: 'MON',
+    date: 'November 2, 2026',
+    subtitle: 'A Blessed Feast & Grand Celebration',
+    dayOfWeek: 'Monday',
+    dayOfMonth: '2',
+    monthName: 'November',
+    year: '2026',
+    time: '07:30 PM Onwards',
+    venue: 'Radiant Resorts Gorakhpur',
+    dressCode: 'Formal Evening Elegance',
+    directionsUrl: 'https://maps.app.goo.gl/YeqWGNYWq3HWQegm9',
+    couplePhoto: getAssetPath('assets/SSG00440-Dz91S7X0.jpg'),
+    caricatureImage: getAssetPath('assets/SSG00440-Dz91S7X0.jpg'),
+    caricatureBadge: 'Ambiya & Basti Ali · Wedding Reception 👑',
+    fullCardImage: getAssetPath('assets/page 4 (2 Nov).jpg'),
+  }
 ];
 
 export default function App() {
