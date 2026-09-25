@@ -143,6 +143,7 @@ export default function App() {
                   'page 0.jpg',
                   'page 0.jpeg',
                   'cover.jpg',
+                  'Basit&Ambiya11.png'
                 ]}
                 altText="Ambiya & Basit Ali — Wedding Suite Prelude Page"
                 storageKey="suite_page_0"
