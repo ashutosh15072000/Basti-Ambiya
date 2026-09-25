@@ -3,6 +3,8 @@ import { getAssetPath } from './assets';
 const CACHE_NAME = 'wedding-invitation-cache-v2';
 
 const CRITICAL_IMAGES = [
+  'assets/Basti&Ambiya11.webp',
+  'assets/opening-circle-logo.webp',
   'assets/page 1.webp',
   'assets/Basit&Ambiya11.webp',
   'assets/Basit&Ambiya11.png',

@@ -37,8 +37,10 @@ const EVENTS_SCHEDULE: EventDetails[] = [
     couplePhoto: getAssetPath('assets/SSG09645-C19LQ60y.webp'),
     caricatureImage: getAssetPath('assets/SSG09645-C19LQ60y.webp'),
     caricatureBadge: 'Basti Ali and Ambiya Basher · Sacred Rukhsita 🕊️',
-    fullCardImage: getAssetPath('assets/Basit&Ambiya11.webp'),
+    fullCardImage: getAssetPath('assets/Basti&Ambiya11.webp'),
     cardImageCandidates: [
+      getAssetPath('assets/Basti&Ambiya11.webp'),
+      getAssetPath('assets/opening-circle-logo.webp'),
       getAssetPath('assets/Basit&Ambiya11.webp'),
       getAssetPath('assets/Basit&Ambiya11.png'),
       getAssetPath('assets/basit-ambiya-card.webp'),
