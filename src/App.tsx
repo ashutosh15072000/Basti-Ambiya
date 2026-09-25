@@ -21,7 +21,7 @@ import { EventDetails } from './types';
 const EVENTS_SCHEDULE: EventDetails[] = [
      
     {
-    title: 'The Sacred Wedding & Nikah',
+    title: 'The Sacred Wedding & Rukhsati',
     arabicTitle: 'عقد النكاح المبارك',
     description: 'The sacred Islamic marriage covenant solemnized under the divine grace of Allah (SWT), followed by a celebratory royal dinner banquet.',
     day: 'THU',
@@ -31,13 +31,13 @@ const EVENTS_SCHEDULE: EventDetails[] = [
     dayOfMonth: '29',
     monthName: 'October',
     year: '2026',
-    time: 'Nikah at 06:30 PM | Royal Banquet at 08:00 PM',
+    time: 'Rukhsati at 06:30 PM | Royal Banquet at 08:00 PM',
     venue: 'Shimla Resort',
     dressCode: 'Royal Traditional / Modest Luxury',
     directionsUrl: 'https://maps.app.goo.gl/oNb7LC2ZuKpFT9b7A?g_st=ac',
     couplePhoto: getAssetPath('assets/SSG09645-C19LQ60y.jpg'),
     caricatureImage: getAssetPath('assets/SSG09645-C19LQ60y.jpg'),
-    caricatureBadge: 'Ambiya & Basti Ali · Sacred Nikah 🕊️',
+    caricatureBadge: 'Ambiya & Basti Ali · Sacred Rukhsati 🕊️',
     fullCardImage: getAssetPath('assets/page 2(oct 29).png'),
   },
   {
@@ -57,7 +57,7 @@ const EVENTS_SCHEDULE: EventDetails[] = [
     directionsUrl: 'https://maps.app.goo.gl/VC1HVfJNPzLf7CNy9',
     couplePhoto: getAssetPath('assets/SSG00440-Dz91S7X0.jpg'),
     caricatureImage: getAssetPath('assets/SSG00440-Dz91S7X0.jpg'),
-    caricatureBadge: 'Ambiya & Basti Ali · Wedding Reception 👑',
+    caricatureBadge: 'Basti Ali & Ambiya · Wedding Reception 👑',
     fullCardImage: getAssetPath('assets/page3( 30 oct).png'),
   },
   {
@@ -77,7 +77,7 @@ const EVENTS_SCHEDULE: EventDetails[] = [
     directionsUrl: 'https://maps.app.goo.gl/YeqWGNYWq3HWQegm9',
     couplePhoto: getAssetPath('assets/SSG00440-Dz91S7X0.jpg'),
     caricatureImage: getAssetPath('assets/SSG00440-Dz91S7X0.jpg'),
-    caricatureBadge: 'Ambiya & Basti Ali · Wedding Reception 👑',
+    caricatureBadge: 'Basti Ali & Ambiya · Wedding Reception 👑',
     fullCardImage: getAssetPath('assets/page 4 (2 Nov).png'),
   }
 ];
@@ -89,7 +89,7 @@ export default function App() {
   const [dateRevealed, setDateRevealed] = useState(false);
 
   useEffect(() => {
-    document.title = 'Ambiya & Basti Ali — Wedding Invitation · October 2026';
+    document.title = 'Basti Ali & Ambiya Basher— Wedding Invitation · October 2026';
     const metaDesc =
       document.querySelector('meta[name="description"]') ||
       (() => {
@@ -100,7 +100,7 @@ export default function App() {
       })();
     metaDesc.setAttribute(
       'content',
-      'Join Ambiya & Basti Ali for their sacred Nikah & wedding celebrations on Thursday, 29 October 2026.'
+      'Join Ambiya & Basti Ali for their sacred Rukhsati & wedding celebrations on Thursday, 29 October 2026.'
     );
   }, []);
 
@@ -145,7 +145,7 @@ export default function App() {
                   'cover.jpg',
                   'Basit&Ambiya11.png'
                 ]}
-                altText="Ambiya & Basit Ali — Wedding Suite Prelude Page"
+                altText="Basit Ali & Ambiya Basher— Wedding Suite Prelude Page"
                 storageKey="suite_page_0"
               />
             </AnimatedSection>
