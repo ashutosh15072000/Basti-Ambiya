@@ -163,7 +163,7 @@ export default function App() {
             <InvitationPageCard
               pageLabel="Wedding Suite · Page 1"
               pageTitle="Sacred Prelude & Blessing"
-              defaultFilename="page 0.png"
+              defaultFilename="Basti&Ambiya11.webp"
               candidateFilenames={[
                 'page 0.png',
                 'page0.png',
